@@ -4,121 +4,250 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sami Regragui · Full-Stack Developer · Java / Angular</title>
-  <meta name="description" content="Sami Regragui, full-stack developer (Java / Angular, Laravel / Vue.js, Python). Projects, experience and contact.">
+  <meta name="description" content="Sami Regragui, full-stack developer focused on Java, Angular and backend systems. Featured projects, experience and contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ===== Design tokens ===== */
     :root {
-      --bg: #0f1419;
-      --surface: #171e26;
-      --surface-2: #1f2933;
-      --text: #e6edf3;
-      --muted: #9aa7b4;
-      --accent: #4fd1c5;
-      --accent-2: #f6ad55;
-      --border: #2a3441;
-      --radius: 12px;
+      /* Color */
+      --bg: #0b0f14;
+      --surface: #121922;
+      --surface-2: #1a2430;
+      --border: #22303f;
+      --text: #e8eef5;
+      --muted: #97a6b8;          /* ~7:1 on --bg */
+      --accent: #5eead4;         /* primary */
+      --accent-ink: #04211c;     /* text on accent */
+      --accent-2: #fbbf24;       /* highlights */
+      --focus: #5eead4;
+
+      /* Type scale (fluid) */
+      --fs-display: clamp(2.5rem, 6vw, 4.25rem);
+      --fs-h2: clamp(1.6rem, 3vw, 2.1rem);
+      --fs-h3: 1.15rem;
+      --fs-body: 1rem;           /* 16px */
+      --fs-small: 0.875rem;
+      --fs-mono: 0.8rem;
+      --lh-body: 1.7;
+      --lh-tight: 1.15;
+
+      /* Spacing (8px base) */
+      --s1: 0.5rem; --s2: 1rem; --s3: 1.5rem; --s4: 2rem; --s5: 3rem; --s6: 4rem; --s7: 6rem;
+
+      --radius: 14px;
+      --radius-sm: 8px;
+      --max: 1080px;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Arabic", sans-serif;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", sans-serif;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
-    section { padding: 64px 0; border-top: 1px solid var(--border); }
-    h1, h2, h3 { line-height: 1.25; margin: 0 0 12px; }
-    h2 { font-size: 1.6rem; }
-    h3 { font-size: 1.15rem; }
-    p { margin: 0 0 12px; }
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3 { margin: 0 0 var(--s2); line-height: var(--lh-tight); letter-spacing: -0.01em; }
+    h1 { font-size: var(--fs-display); font-weight: 800; }
+    h2 { font-size: var(--fs-h2); font-weight: 700; }
+    h3 { font-size: var(--fs-h3); font-weight: 600; }
+    p { margin: 0 0 var(--s2); }
     .muted { color: var(--muted); }
+    .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size: var(--fs-mono); }
+    html[dir="rtl"] body { font-family: "Noto Sans Arabic", Inter, system-ui, sans-serif; }
+    html[dir="rtl"] .mono { font-family: "Noto Sans Arabic", system-ui, sans-serif; }
 
-    header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(15, 20, 25, 0.9);
-      backdrop-filter: blur(8px);
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s3); }
+    section { padding: var(--s7) 0; }
+    section + section { border-top: 1px solid var(--border); }
+
+    .skip {
+      position: absolute; top: -48px; left: var(--s2); z-index: 100;
+      background: var(--accent); color: var(--accent-ink); padding: var(--s1) var(--s2); border-radius: var(--radius-sm);
+    }
+    .skip:focus { top: var(--s1); }
+
+    /* ===== Header ===== */
+    header.site {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11, 15, 20, 0.85);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; flex-wrap: wrap; }
-    .brand { font-weight: 700; color: var(--text); }
-    .nav-links { display: flex; gap: 18px; font-size: 0.95rem; }
-    .nav-links a { color: var(--muted); }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); min-height: 64px; flex-wrap: wrap; padding: var(--s1) 0; }
+    .brand { font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: var(--s3); font-size: var(--fs-small); overflow-x: auto; }
+    .nav-links a { color: var(--muted); white-space: nowrap; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     .lang { display: flex; gap: 6px; }
     .lang button {
       background: transparent; color: var(--muted);
       border: 1px solid var(--border); border-radius: 999px;
-      padding: 4px 10px; font: inherit; font-size: 0.85rem; cursor: pointer;
+      padding: 4px 11px; font: inherit; font-size: var(--fs-small); cursor: pointer;
     }
-    .lang button[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+    .lang button:hover { color: var(--text); }
+    .lang button[aria-pressed="true"] { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); font-weight: 600; }
 
-    .hero { padding: 96px 0 72px; border-top: none; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
-    .hero .role { color: var(--accent); font-size: 1.2rem; margin-bottom: 16px; }
-    .hero .intro { max-width: 640px; color: var(--muted); font-size: 1.05rem; }
-    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    /* ===== Buttons ===== */
     .btn {
-      display: inline-block; padding: 10px 18px; border-radius: 8px;
-      border: 1px solid var(--accent); color: var(--accent); font-weight: 600;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: var(--radius-sm);
+      border: 1px solid var(--accent); color: var(--accent);
+      font-weight: 600; font-size: var(--fs-small); cursor: pointer; background: transparent;
     }
-    .btn.primary { background: var(--accent); color: var(--bg); }
-    .btn:hover { text-decoration: none; opacity: 0.9; }
+    .btn:hover { text-decoration: none; background: rgba(94, 234, 212, 0.08); }
+    .btn.primary { background: var(--accent); color: var(--accent-ink); }
+    .btn.primary:hover { background: #7ff0dc; }
+    .btn[aria-expanded="true"] { background: var(--surface-2); color: var(--text); border-color: var(--border); }
 
-    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    /* ===== Hero ===== */
+    .hero { padding: var(--s7) 0 var(--s6); }
+    .eyebrow { color: var(--accent); font-size: var(--fs-small); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--s2); }
+    .hero .value { font-size: clamp(1.15rem, 2.2vw, 1.4rem); color: var(--text); max-width: 42rem; margin-bottom: var(--s2); }
+    .hero .role { color: var(--muted); font-size: var(--fs-body); margin-bottom: var(--s3); }
+    .cta { display: flex; gap: var(--s2); flex-wrap: wrap; margin-top: var(--s3); }
+    .status {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: var(--s4);
+      padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+      color: var(--muted); font-size: var(--fs-small); background: var(--surface);
+    }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(94,234,212,0.15); }
+
+    /* ===== Section heading with counter ===== */
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s2); flex-wrap: wrap; margin-bottom: var(--s2); }
+    .counter {
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--fs-small);
+      color: var(--accent-ink); background: var(--accent); padding: 2px 10px; border-radius: 999px; font-weight: 600;
+    }
+    .sub { color: var(--muted); max-width: 40rem; margin-bottom: var(--s5); }
+
+    /* ===== About ===== */
+    .about-grid { display: grid; gap: var(--s4); grid-template-columns: 1fr; }
+    .about-grid p { color: var(--muted); font-size: 1.05rem; }
+    .about-grid p strong { color: var(--text); font-weight: 600; }
+
+    /* ===== Project cards ===== */
+    .grid { display: grid; gap: var(--s3); grid-template-columns: 1fr; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 22px;
+      border-radius: var(--radius); overflow: hidden;
       display: flex; flex-direction: column;
+      transition: border-color .2s ease, transform .2s ease;
     }
-    .card p { color: var(--muted); font-size: 0.95rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+    .card:hover { border-color: #2f4157; transform: translateY(-2px); }
+    .media {
+      aspect-ratio: 16 / 9; position: relative;
+      display: flex; align-items: flex-end; padding: var(--s2);
+      border-bottom: 1px solid var(--border);
+    }
+    .media span {
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem;
+      background: rgba(11, 15, 20, 0.55); color: var(--text);
+      padding: 3px 8px; border-radius: 6px;
+    }
+    .card-body { padding: var(--s3); display: flex; flex-direction: column; flex: 1; }
+    .card h3 { margin-bottom: var(--s1); }
+    .problem { color: var(--muted); font-size: var(--fs-small); margin-bottom: var(--s2); }
+    .problem b { color: var(--accent-2); font-weight: 600; margin-inline-end: 6px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--s2); }
     .tag {
-      font-size: 0.78rem; padding: 3px 9px; border-radius: 999px;
-      background: var(--surface-2); color: var(--text); border: 1px solid var(--border);
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem;
+      padding: 3px 8px; border-radius: 6px;
+      background: var(--surface-2); color: #c8d4e2; border: 1px solid var(--border);
     }
-    .card .links { margin-top: auto; display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.92rem; }
-    .badge { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--accent-2); margin-bottom: 8px; }
+    .card .links { margin-top: auto; display: flex; gap: var(--s2); flex-wrap: wrap; font-size: var(--fs-small); font-weight: 600; padding-top: var(--s1); }
+    .badge { display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--accent-2); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
 
-    .timeline { display: grid; gap: 16px; }
-    .item {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px 22px;
+    /* ===== All projects list ===== */
+    .all-panel { margin-top: var(--s4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s3); }
+    .all-panel[hidden] { display: none; }
+    .all-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px var(--s3); grid-template-columns: 1fr; }
+    .all-list li { display: flex; justify-content: space-between; gap: var(--s2); padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: var(--fs-small); }
+    .all-list a { font-family: "JetBrains Mono", ui-monospace, monospace; color: var(--text); font-size: 0.85rem; overflow-wrap: anywhere; }
+    .all-list a:hover { color: var(--accent); }
+    .all-list .muted { font-size: 0.78rem; white-space: nowrap; }
+
+    /* ===== Skills ===== */
+    .skills-grid { display: grid; gap: var(--s3); grid-template-columns: 1fr; }
+    .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s3); }
+    .skill-card h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: var(--s2); font-weight: 700; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chips span {
+      font-size: var(--fs-small); padding: 4px 10px; border-radius: 6px;
+      background: var(--surface-2); border: 1px solid var(--border); color: #d3dde9;
     }
-    .item .when { color: var(--accent-2); font-size: 0.9rem; }
-    .item .where { color: var(--muted); font-size: 0.95rem; }
+    .certs { margin-top: var(--s3); color: var(--muted); font-size: var(--fs-small); }
 
-    .skill-group { margin-bottom: 20px; }
-    .skill-group h3 { font-size: 1rem; color: var(--accent); margin-bottom: 8px; }
-    .skills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skills span {
-      padding: 6px 12px; border-radius: 8px;
-      background: var(--surface); border: 1px solid var(--border); font-size: 0.92rem;
+    /* ===== Timeline ===== */
+    .timeline { position: relative; padding-inline-start: var(--s3); display: grid; gap: var(--s4); }
+    .timeline::before {
+      content: ""; position: absolute; inset-block: 6px; inset-inline-start: 5px; width: 2px; background: var(--border);
     }
+    .tl-item { position: relative; }
+    .tl-item::before {
+      content: ""; position: absolute; top: 8px; inset-inline-start: calc(-1 * var(--s3) - 2px);
+      width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent);
+    }
+    .tl-when { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: var(--fs-mono); color: var(--accent-2); }
+    .tl-role { font-size: 1.1rem; font-weight: 600; margin: 4px 0; }
+    .tl-where { color: var(--muted); font-size: var(--fs-small); margin-bottom: 6px; }
+    .tl-desc { color: var(--muted); font-size: var(--fs-small); margin: 0; }
+    .edu-title { margin: var(--s5) 0 var(--s3); font-size: 1.1rem; }
 
-    footer { padding: 32px 0 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+    /* ===== Contact & footer ===== */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(94,234,212,0.08), rgba(251,191,36,0.05));
+      border: 1px solid var(--border); border-radius: var(--radius); padding: var(--s5) var(--s3); text-align: center;
+    }
+    .contact-box h2 { margin-bottom: var(--s2); }
+    .contact-box p { color: var(--muted); max-width: 36rem; margin-inline: auto; }
+    .contact-box .cta { justify-content: center; }
+    footer.site-foot { padding: var(--s4) 0 var(--s5); border-top: 1px solid var(--border); color: var(--muted); font-size: var(--fs-small); }
 
-    html[dir="rtl"] body { font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif; }
-    html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
-
-    @media (max-width: 640px) {
-      section { padding: 48px 0; }
-      .nav-links { display: none; }
+    /* ===== Breakpoints (mobile first) ===== */
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .all-list { grid-template-columns: 1fr 1fr; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { overflow: visible; }
+    }
+    @media (max-width: 639px) {
+      section { padding: var(--s6) 0; }
+      .hero { padding: var(--s5) 0 var(--s5); }
+      .nav-links { order: 3; width: 100%; padding-bottom: 4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .card, .card:hover { transition: none; transform: none; }
     }
   </style>
 </head>
 <body>
 
-<header>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
   <div class="container nav">
-    <a class="brand" href="#top">Sami Regragui</a>
+    <a class="brand" href="#top">Sami<span>.</span>Regragui</a>
     <nav class="nav-links" aria-label="Main">
       <a href="#about" data-i18n="nav_about"></a>
       <a href="#projects" data-i18n="nav_projects"></a>
-      <a href="#experience" data-i18n="nav_experience"></a>
       <a href="#skills" data-i18n="nav_skills"></a>
+      <a href="#experience" data-i18n="nav_experience"></a>
       <a href="#contact" data-i18n="nav_contact"></a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
@@ -129,32 +258,129 @@
   </div>
 </header>
 
-<main id="top">
+<main id="main">
 
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="container">
+      <p class="eyebrow" data-i18n="eyebrow"></p>
       <h1>Sami Regragui</h1>
+      <p class="value" data-i18n="value"></p>
       <p class="role" data-i18n="role"></p>
-      <p class="intro" data-i18n="intro"></p>
       <div class="cta">
-        <a class="btn primary" href="#projects" data-i18n="cta_projects"></a>
-        <a class="btn" href="mailto:sami.regragui.work@protonmail.com">sami.regragui.work@protonmail.com</a>
+        <a class="btn primary" href="#projects" data-i18n="cta_primary"></a>
+        <a class="btn" href="#contact" data-i18n="cta_secondary"></a>
       </div>
+      <span class="status" data-i18n="status"></span>
     </div>
   </section>
 
   <section id="about">
     <div class="container">
       <h2 data-i18n="about_title"></h2>
-      <p class="muted" data-i18n="about_text"></p>
+      <div class="about-grid">
+        <p data-i18n="about_p1"></p>
+        <p data-i18n="about_p2"></p>
+      </div>
     </div>
   </section>
 
   <section id="projects">
     <div class="container">
-      <h2 data-i18n="projects_title"></h2>
-      <p class="muted" data-i18n="projects_intro"></p>
+      <div class="section-head">
+        <h2><span data-i18n="projects_title"></span> <span class="counter" id="project-count"></span></h2>
+        <button class="btn" type="button" id="toggle-all" aria-expanded="false" aria-controls="all-panel" data-i18n="btn_all_projects"></button>
+      </div>
+      <p class="sub" data-i18n="projects_intro"></p>
+
       <div class="grid" id="project-grid"></div>
+
+      <div class="all-panel" id="all-panel" hidden>
+        <h3 data-i18n="all_title"></h3>
+        <ul class="all-list" id="all-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2 data-i18n="skills_title"></h2>
+      <p class="sub" data-i18n="skills_intro"></p>
+      <div class="skills-grid">
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_languages"></h3>
+          <div class="chips">
+            <span>Java SE</span><span>Python</span><span>PHP</span><span>JavaScript</span><span>Rust</span><span>C</span><span>SQL</span><span>Bash</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_backend"></h3>
+          <div class="chips">
+            <span>Spring</span><span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate / JPA</span>
+            <span>Jakarta EE</span><span>JSP / JSTL</span><span>JDBC</span><span>Laravel</span><span>Blade</span><span>PDO</span><span>WebSocket</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_frontend"></h3>
+          <div class="chips">
+            <span>Angular</span><span>Vue.js</span><span>HTML</span><span>CSS</span><span>Tailwind CSS</span><span>jQuery</span><span>AJAX</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_data"></h3>
+          <div class="chips">
+            <span>MySQL</span><span>PostgreSQL</span><span>H2</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_python_data"></h3>
+          <div class="chips">
+            <span data-i18n="py_1"></span><span data-i18n="py_2"></span><span>NumPy</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_security"></h3>
+          <div class="chips">
+            <span>Nmap</span><span>OpenVAS</span><span>nuclei</span><span>TLS</span><span>SDN OpenDaylight</span><span>Mininet</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_tools"></h3>
+          <div class="chips">
+            <span>Linux</span><span>Docker</span><span>Git & GitHub</span><span>Maven</span><span>Postman</span><span>Swagger / OpenAPI</span>
+            <span>IntelliJ IDEA</span><span>VS Code</span><span>phpMyAdmin</span><span>Figma</span><span>Jira</span><span>StarUML</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_testing"></h3>
+          <div class="chips">
+            <span>JUnit 5</span><span>Mockito</span><span>MockMvc</span><span>Testcontainers</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_concepts"></h3>
+          <div class="chips">
+            <span>MVC</span><span>OOP</span><span>SOLID</span><span>UML</span><span>ERD</span><span>REST APIs</span><span>JWT / OAuth</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 data-i18n="sk_languages_spoken"></h3>
+          <div class="chips">
+            <span data-i18n="lang_ar"></span><span data-i18n="lang_en"></span><span data-i18n="lang_fr"></span>
+          </div>
+        </div>
+
+      </div>
+      <p class="certs" data-i18n="certs"></p>
     </div>
   </section>
 
@@ -162,294 +388,357 @@
     <div class="container">
       <h2 data-i18n="exp_title"></h2>
       <div class="timeline" id="timeline"></div>
-      <h3 style="margin-top:32px" data-i18n="edu_title"></h3>
+      <h3 class="edu-title" data-i18n="edu_title"></h3>
       <div class="timeline" id="education"></div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <h2 data-i18n="skills_title"></h2>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_languages"></h3>
-        <div class="skills">
-          <span>Java SE</span><span>Python</span><span>PHP</span><span>JavaScript</span><span>Rust</span><span>C</span><span>SQL</span><span>Bash</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_backend"></h3>
-        <div class="skills">
-          <span>Spring</span><span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate / JPA</span>
-          <span>Jakarta EE (JEE)</span><span>JSP / JSTL</span><span>JDBC</span><span>Laravel</span><span>Blade</span><span>PDO</span><span>WebSocket</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_frontend"></h3>
-        <div class="skills">
-          <span>Angular</span><span>Vue.js</span><span>HTML</span><span>CSS</span><span>jQuery</span><span>AJAX</span><span>Tailwind CSS</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_data"></h3>
-        <div class="skills">
-          <span>MySQL</span><span>PostgreSQL</span><span>H2</span>
-          <span data-i18n="sk_python_data"></span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_security"></h3>
-        <div class="skills">
-          <span>Cisco CCNA</span><span>Nmap</span><span>OpenVAS</span><span>nuclei</span><span>TLS</span><span>SDN OpenDaylight</span><span>Mininet</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_tools"></h3>
-        <div class="skills">
-          <span>Linux</span><span>Docker</span><span>Git & GitHub</span><span>Maven</span><span>Postman</span><span>Swagger / OpenAPI</span>
-          <span>IntelliJ IDEA</span><span>VS Code</span><span>phpMyAdmin</span><span>Figma</span><span>Jira</span><span>StarUML</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_testing"></h3>
-        <div class="skills">
-          <span>JUnit 5</span><span>Mockito</span><span>MockMvc</span><span>Testcontainers</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_concepts"></h3>
-        <div class="skills">
-          <span>MVC</span><span>OOP</span><span>SOLID</span><span>UML</span><span>ERD</span><span>REST APIs</span><span>JWT / OAuth</span>
-        </div>
-      </div>
-
-      <div class="skill-group">
-        <h3 data-i18n="sk_languages_spoken"></h3>
-        <div class="skills">
-          <span data-i18n="lang_ar"></span><span data-i18n="lang_en"></span><span data-i18n="lang_fr"></span>
-        </div>
-      </div>
-
-      <p class="muted" style="margin-top:16px" data-i18n="certs"></p>
     </div>
   </section>
 
   <section id="contact">
     <div class="container">
-      <h2 data-i18n="contact_title"></h2>
-      <p class="muted" data-i18n="contact_text"></p>
-      <div class="cta">
-        <a class="btn primary" href="mailto:sami.regragui.work@protonmail.com">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/samiregragui" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn" href="https://github.com/Sami-Regragui-Work" target="_blank" rel="noopener">GitHub</a>
+      <div class="contact-box">
+        <h2 data-i18n="contact_title"></h2>
+        <p data-i18n="contact_text"></p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:sami.regragui.work@protonmail.com">sami.regragui.work@protonmail.com</a>
+          <a class="btn" href="https://www.linkedin.com/in/samiregragui" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/Sami-Regragui-Work" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer>
+<footer class="site-foot">
   <div class="container">
     <span id="footer-text"></span>
   </div>
 </footer>
 
 <script>
+  /* ===== Config ===== */
   const START_YEAR = 2026;
   const CURRENT_YEAR = new Date().getFullYear();
   const YEAR_TEXT = CURRENT_YEAR > START_YEAR ? START_YEAR + " - " + CURRENT_YEAR : String(START_YEAR);
 
+  /* ===== Translations ===== */
   const T = {
     en: {
-      nav_about: "About", nav_projects: "Projects", nav_experience: "Experience",
-      nav_skills: "Skills", nav_contact: "Contact",
-      role: "Full-Stack Developer · Java / Angular · Backend-leaning",
-      intro: "I build web applications end to end: APIs, secured back ends and the front ends that use them. Currently training at YouCode (UM6P) in Java and Angular.",
-      cta_projects: "See my projects",
-      about_title: "About me",
-      about_text: "I hold a Bachelor in Computer Science, Networks and Multimedia (IRM), and I'm a full-stack developer, with the most experience in the Laravel and Vue.js stack. I'm now specializing in Java and Angular, and I'm leaning toward backend work. I also have strong hands-on Python experience, especially data processing for images and audio. What I love most is coding in general: business logic and problem solving.",
+      nav_about: "About", nav_projects: "Projects", nav_skills: "Skills", nav_experience: "Experience", nav_contact: "Contact",
+      eyebrow: "Full-stack developer",
+      value: "I build backend systems that handle real business rules, and the interfaces that make them usable.",
+      role: "Java / Angular · Laravel / Vue.js · Python · backend-leaning",
+      cta_primary: "View featured projects",
+      cta_secondary: "Get in touch",
+      status: "Open to full-stack Java / Angular and Laravel roles",
+      about_title: "About",
+      about_p1: "I hold a <strong>Bachelor in Computer Science, Networks and Multimedia (IRM)</strong> and I'm a full-stack developer. My deepest hands-on experience is with Laravel and Vue.js, and I'm now specializing in Java and Angular, leaning toward backend work.",
+      about_p2: "I also have strong native Python experience, especially for data processing on images and audio. Above all, I love coding: business logic and problem solving are what keep me going.",
       projects_title: "Projects",
-      projects_intro: "A selection of my work, from full-stack applications to APIs and security tooling.",
-      exp_title: "Experience",
-      edu_title: "Education",
+      projects_intro: "Selected work, from full-stack applications to APIs and security tooling. Each card shows the problem it solves and the stack behind it.",
+      btn_all_projects: "See all projects",
+      btn_hide_projects: "Hide list",
+      all_title: "All projects",
       skills_title: "Skills",
-      sk_languages: "Programming languages",
+      skills_intro: "Grouped by how I use them day to day.",
+      sk_languages: "Languages",
       sk_backend: "Backend",
       sk_frontend: "Frontend",
-      sk_data: "Databases and data",
-      sk_python_data: "Python: image and audio processing",
-      sk_security: "Networking and security",
+      sk_data: "Databases",
+      sk_python_data: "Python & data",
+      py_1: "Image processing", py_2: "Audio processing",
+      sk_security: "Networking & security",
       sk_tools: "Tools",
       sk_testing: "Testing",
-      sk_concepts: "Concepts and methods",
-      sk_languages_spoken: "Languages",
+      sk_concepts: "Concepts",
+      sk_languages_spoken: "Spoken languages",
       lang_ar: "Arabic (native)", lang_en: "English (B2)", lang_fr: "French (B1)",
-      certs: "Certification: Cisco Certified Network Associate (CCNA), 2023.",
-      contact_title: "Contact",
-      contact_text: "Open to full-stack Java / Angular and Laravel roles. Feel free to get in touch.",
+      certs: "Certified: Cisco CCNA (2023).",
+      exp_title: "Experience",
+      edu_title: "Education",
+      contact_title: "Let's talk",
+      contact_text: "I'm looking for full-stack Java / Angular and Laravel roles. If you have a backend problem worth solving, send me a message.",
       footer: "© " + YEAR_TEXT + " Sami Regragui",
+      problem_label: "Problem",
+      tech_label: "Stack",
       view_code: "Source code",
       view_live: "Live demo",
+      frontend: "Frontend",
       badge_live: "Live",
-      frontend: "Frontend"
+      placeholder: "Screenshot placeholder",
+      repo_no_readme: "no README",
+      repo_link: "Repo"
     },
     fr: {
-      nav_about: "À propos", nav_projects: "Projets", nav_experience: "Expérience",
-      nav_skills: "Compétences", nav_contact: "Contact",
-      role: "Développeur Full-Stack · Java / Angular · Orienté backend",
-      intro: "Je conçois des applications web de bout en bout : APIs, back-ends sécurisés et front-ends qui les utilisent. Actuellement en formation à YouCode (UM6P) en Java et Angular.",
-      cta_projects: "Voir mes projets",
-      about_title: "À propos de moi",
-      about_text: "Titulaire d'une licence en Informatique, Réseaux et Multimédia (IRM), je suis développeur full-stack, avec le plus d'expérience sur la stack Laravel et Vue.js. Je me spécialise maintenant en Java et Angular, et je m'oriente vers le backend. J'ai aussi une solide expérience pratique en Python, notamment pour le traitement de données (images, audio). Ce que j'aime par-dessus tout, c'est coder en général : la logique métier et la résolution de problèmes.",
+      nav_about: "À propos", nav_projects: "Projets", nav_skills: "Compétences", nav_experience: "Expérience", nav_contact: "Contact",
+      eyebrow: "Développeur full-stack",
+      value: "Je construis des systèmes backend qui gèrent de vraies règles métier, et les interfaces qui les rendent utilisables.",
+      role: "Java / Angular · Laravel / Vue.js · Python · orienté backend",
+      cta_primary: "Voir les projets phares",
+      cta_secondary: "Me contacter",
+      status: "Ouvert aux postes Full-Stack Java / Angular et Laravel",
+      about_title: "À propos",
+      about_p1: "Titulaire d'une <strong>licence en Informatique, Réseaux et Multimédia (IRM)</strong>, je suis développeur full-stack. Mon expérience la plus solide est sur Laravel et Vue.js, et je me spécialise maintenant en Java et Angular, en m'orientant vers le backend.",
+      about_p2: "J'ai aussi une solide expérience en Python natif, notamment pour le traitement de données d'images et d'audio. Par-dessus tout, j'aime coder : la logique métier et la résolution de problèmes sont ce qui me motive.",
       projects_title: "Projets",
-      projects_intro: "Une sélection de mes réalisations, des applications full-stack aux APIs et outils de sécurité.",
-      exp_title: "Expérience",
-      edu_title: "Formation",
+      projects_intro: "Une sélection de mes réalisations, des applications full-stack aux APIs et outils de sécurité. Chaque carte montre le problème résolu et la stack utilisée.",
+      btn_all_projects: "Voir tous les projets",
+      btn_hide_projects: "Masquer la liste",
+      all_title: "Tous les projets",
       skills_title: "Compétences",
-      sk_languages: "Langages de programmation",
+      skills_intro: "Regroupées selon mon usage au quotidien.",
+      sk_languages: "Langages",
       sk_backend: "Backend",
       sk_frontend: "Frontend",
-      sk_data: "Bases de données et données",
-      sk_python_data: "Python : traitement d'images et d'audio",
-      sk_security: "Réseaux et sécurité",
+      sk_data: "Bases de données",
+      sk_python_data: "Python & données",
+      py_1: "Traitement d'images", py_2: "Traitement audio",
+      sk_security: "Réseaux & sécurité",
       sk_tools: "Outils",
       sk_testing: "Tests",
-      sk_concepts: "Concepts et méthodes",
+      sk_concepts: "Concepts",
       sk_languages_spoken: "Langues",
       lang_ar: "Arabe (langue maternelle)", lang_en: "Anglais (B2)", lang_fr: "Français (B1)",
-      certs: "Certification : Cisco Certified Network Associate (CCNA), 2023.",
-      contact_title: "Contact",
-      contact_text: "Ouvert aux postes Full-Stack Java / Angular et Laravel. N'hésitez pas à me contacter.",
+      certs: "Certification : Cisco CCNA (2023).",
+      exp_title: "Expérience",
+      edu_title: "Formation",
+      contact_title: "Parlons-en",
+      contact_text: "Je recherche des postes Full-Stack Java / Angular et Laravel. Si vous avez un problème backend à résoudre, écrivez-moi.",
       footer: "© " + YEAR_TEXT + " Sami Regragui",
+      problem_label: "Problème",
+      tech_label: "Stack",
       view_code: "Code source",
       view_live: "Démo en ligne",
+      frontend: "Frontend",
       badge_live: "En ligne",
-      frontend: "Frontend"
+      placeholder: "Emplacement capture d'écran",
+      repo_no_readme: "sans README",
+      repo_link: "Dépôt"
     },
     ar: {
-      nav_about: "نبذة", nav_projects: "المشاريع", nav_experience: "الخبرة",
-      nav_skills: "المهارات", nav_contact: "تواصل",
-      role: "مطور متكامل · Java / Angular · يميل إلى الخلفية",
-      intro: "أبني تطبيقات ويب من البداية إلى النهاية: واجهات برمجية، وخوادم خلفية آمنة، والواجهات الأمامية التي تستخدمها. أتابع حاليا تكويني في YouCode (UM6P) في Java و Angular.",
-      cta_projects: "شاهد مشاريعي",
+      nav_about: "نبذة", nav_projects: "المشاريع", nav_skills: "المهارات", nav_experience: "الخبرة", nav_contact: "تواصل",
+      eyebrow: "مطور متكامل",
+      value: "أبني أنظمة خلفية تتعامل مع قواعد الأعمال الحقيقية، والواجهات التي تجعلها سهلة الاستخدام.",
+      role: "Java / Angular · Laravel / Vue.js · Python · يميل إلى الخلفية",
+      cta_primary: "شاهد المشاريع المختارة",
+      cta_secondary: "تواصل معي",
+      status: "منفتح على فرص Full-Stack Java / Angular و Laravel",
       about_title: "نبذة عني",
-      about_text: "حاصل على إجازة في علوم الحاسوب والشبكات والوسائط المتعددة (IRM)، ومطور متكامل، وأملك أكبر خبرة في مجموعة Laravel و Vue.js. وأتخصص حاليا في Java و Angular، وأميل نحو تطوير الخلفية. ولدي خبرة عملية قوية في Python، خاصة في معالجة البيانات مثل الصور والصوت. ما أحبه أكثر هو البرمجة بشكل عام: منطق الأعمال وحل المشكلات.",
+      about_p1: "حاصل على <strong>إجازة في علوم الحاسوب والشبكات والوسائط المتعددة (IRM)</strong>، ومطور متكامل. أكبر خبرة عملية لدي في Laravel و Vue.js، وأتخصص الآن في Java و Angular مع ميل نحو تطوير الخلفية.",
+      about_p2: "ولدي كذلك خبرة قوية في Python، خاصة في معالجة بيانات الصور والصوت. وقبل كل شيء أحب البرمجة: منطق الأعمال وحل المشكلات هو ما يدفعني.",
       projects_title: "المشاريع",
-      projects_intro: "مجموعة مختارة من أعمالي، من التطبيقات المتكاملة إلى الواجهات البرمجية وأدوات الأمن.",
-      exp_title: "الخبرة",
-      edu_title: "التكوين",
+      projects_intro: "مجموعة مختارة من أعمالي، من التطبيقات المتكاملة إلى الواجهات البرمجية وأدوات الأمن. كل بطاقة تُظهر المشكلة التي تحلها والتقنيات المستخدمة.",
+      btn_all_projects: "عرض كل المشاريع",
+      btn_hide_projects: "إخفاء القائمة",
+      all_title: "كل المشاريع",
       skills_title: "المهارات",
-      sk_languages: "لغات البرمجة",
+      skills_intro: "مجمعة حسب استخدامي اليومي لها.",
+      sk_languages: "اللغات البرمجية",
       sk_backend: "الخلفية",
       sk_frontend: "الواجهة الأمامية",
-      sk_data: "قواعد البيانات والبيانات",
-      sk_python_data: "Python: معالجة الصور والصوت",
+      sk_data: "قواعد البيانات",
+      sk_python_data: "Python والبيانات",
+      py_1: "معالجة الصور", py_2: "معالجة الصوت",
       sk_security: "الشبكات والأمن",
       sk_tools: "الأدوات",
       sk_testing: "الاختبار",
-      sk_concepts: "المفاهيم والمنهجيات",
+      sk_concepts: "المفاهيم",
       sk_languages_spoken: "اللغات",
       lang_ar: "العربية (اللغة الأم)", lang_en: "الإنجليزية (B2)", lang_fr: "الفرنسية (B1)",
-      certs: "شهادة: Cisco Certified Network Associate (CCNA)، 2023.",
-      contact_title: "تواصل معي",
-      contact_text: "منفتح على فرص Full-Stack Java / Angular و Laravel. لا تتردد في التواصل معي.",
+      certs: "شهادة: Cisco CCNA (2023).",
+      exp_title: "الخبرة",
+      edu_title: "التكوين",
+      contact_title: "لنتحدث",
+      contact_text: "أبحث عن فرص Full-Stack Java / Angular و Laravel. إذا كانت لديك مشكلة خلفية تستحق الحل، فراسلني.",
       footer: "© " + YEAR_TEXT + " Sami Regragui",
+      problem_label: "المشكلة",
+      tech_label: "التقنيات",
       view_code: "الكود المصدري",
       view_live: "نسخة تجريبية",
+      frontend: "الواجهة الأمامية",
       badge_live: "متاح",
-      frontend: "الواجهة الأمامية"
+      placeholder: "مكان لقطة الشاشة",
+      repo_no_readme: "بدون README",
+      repo_link: "المستودع"
     }
   };
 
-  // Project descriptions follow the CV in each language.
+  /* ===== Featured projects (from CV and READMEs) ===== */
   const PROJECTS = [
     {
       name: "ConvergeThread",
+      grad: "linear-gradient(135deg, #0f766e 0%, #134e4a 55%, #0b1f2a 100%)",
       tags: ["Laravel 12", "Reverb", "LiveKit", "CodeMirror 6", "Vite", "MySQL"],
       repo: "https://github.com/Sami-Regragui-Work/ConvergeThread",
       frontend: null, live: null,
+      problem: {
+        en: "Teams need focused, permissioned collaboration, not a general-purpose chat feed.",
+        fr: "Les équipes ont besoin d'une collaboration cadrée et permissionnée, pas d'un fil de chat généraliste.",
+        ar: "تحتاج الفرق إلى تعاون مركّز ومحكوم بالصلاحيات، لا إلى دردشة عامة."
+      },
       desc: {
-        en: "Thread-based, tenant-oriented chat platform with customizable roles, permissions and flexible group interactions. Bulk and individual operations such as mentions, invitations and muting, with real-time updates through Laravel Reverb. Each tenant workspace stays isolated, with groups, duos and temporary merge sessions for cross-team conversations. Messages support Markdown, attachments and per-channel muting.",
-        fr: "Plateforme de chat multi-locataires basée sur des fils de discussion, avec rôles et permissions personnalisables et groupes flexibles. Actions groupées et individuelles (mentions, invitations, sourdine) en temps réel via Laravel Reverb. Espaces isolés par locataire, avec groupes, duos et sessions de fusion temporaires. Messages en Markdown, pièces jointes et éditeur CodeMirror.",
-        ar: "منصة دردشة متعددة المستأجرين تعتمد على الخيوط، مع أدوار وصلاحيات قابلة للتخصيص ومجموعات مرنة. عمليات جماعية وفردية مثل الإشارات والدعوات وكتم الإشعارات، مع تحديثات فورية عبر Laravel Reverb. كل مساحة عمل معزولة، مع مجموعات وثنائيات وجلسات دمج مؤقتة بين الفرق. تدعم الرسائل Markdown والمرفقات."
+        en: "Thread-based, tenant-oriented chat platform with customizable roles, permissions and flexible group interactions. Real-time updates through Laravel Reverb, with isolated workspaces, groups, duos and temporary merge sessions for cross-team conversations.",
+        fr: "Plateforme de chat multi-locataires basée sur des fils de discussion, avec rôles et permissions personnalisables. Mises à jour en temps réel via Laravel Reverb, espaces isolés, groupes, duos et sessions de fusion temporaires.",
+        ar: "منصة دردشة متعددة المستأجرين تعتمد على الخيوط، مع أدوار وصلاحيات قابلة للتخصيص. تحديثات فورية عبر Laravel Reverb، ومساحات معزولة ومجموعات وجلسات دمج مؤقتة بين الفرق."
       }
     },
     {
       name: "Auth API",
-      tags: ["Laravel 12", "JWT", "Socialite", "Swagger", "Vue.js"],
+      grad: "linear-gradient(135deg, #1e3a8a 0%, #312e81 55%, #0b1020 100%)",
+      tags: ["Laravel 12", "JWT", "Socialite", "Swagger / OpenAPI", "Vue.js"],
       repo: "https://github.com/Sami-Regragui-Work/sagc_api",
       frontend: "https://github.com/Sami-Regragui-Work/sagc_vue",
       live: null,
+      problem: {
+        en: "Every app reinvents login. This service ships JWT, OAuth and token refresh once, fully documented.",
+        fr: "Chaque application réinvente la connexion. Ce service fournit JWT, OAuth et le rafraîchissement des tokens une fois, entièrement documentés.",
+        ar: "كل تطبيق يعيد بناء تسجيل الدخول. تقدم هذه الخدمة JWT و OAuth وتجديد الرموز مرة واحدة، موثقة بالكامل."
+      },
       desc: {
-        en: "REST authentication service with JWT sessions, Google OAuth sign-in, token refresh and user CRUD, documented with interactive Swagger/OpenAPI so every endpoint can be tested directly from the browser. Refresh tokens keep sessions active without repeated logins.",
-        fr: "Service d'authentification REST avec sessions JWT, connexion Google OAuth, rafraîchissement des tokens et CRUD utilisateurs. Documenté avec Swagger/OpenAPI interactif pour tester chaque endpoint directement depuis le navigateur. Les refresh tokens maintiennent les sessions actives sans reconnexion répétée.",
-        ar: "خدمة مصادقة REST مع جلسات JWT وتسجيل الدخول عبر Google OAuth وتجديد الرموز وإدارة المستخدمين، موثقة عبر Swagger/OpenAPI التفاعلي لاختبار كل نقطة نهاية مباشرة من المتصفح. تحافظ رموز التجديد على الجلسات دون إعادة تسجيل الدخول."
+        en: "REST authentication service with JWT sessions, Google OAuth sign-in, token refresh and user CRUD, documented with interactive Swagger/OpenAPI so every endpoint can be tested from the browser.",
+        fr: "Service d'authentification REST avec sessions JWT, connexion Google OAuth, rafraîchissement des tokens et CRUD utilisateurs. Documenté avec Swagger/OpenAPI interactif.",
+        ar: "خدمة مصادقة REST مع جلسات JWT وتسجيل الدخول عبر Google OAuth وتجديد الرموز. موثقة عبر Swagger/OpenAPI التفاعلي لاختبار كل نقطة نهاية من المتصفح."
       }
     },
     {
       name: "Workspace Staff Manager",
+      grad: "linear-gradient(135deg, #7c2d12 0%, #92400e 50%, #1c1917 100%)",
       tags: ["HTML5", "Tailwind CSS", "JavaScript", "localStorage"],
       repo: "https://github.com/Sami-Regragui-Work/WorkSpace-Staff-Manager",
       frontend: null,
       live: "https://sami-regragui-work.github.io/WorkSpace-Staff-Manager/",
+      problem: {
+        en: "Staff get placed in rooms they aren't allowed in. Zone rules are enforced at the point of assignment.",
+        fr: "Du personnel est affecté à des salles auxquelles il n'a pas accès. Les règles de zone sont appliquées au moment de l'affectation.",
+        ar: "يُوزَّع موظفون على غرف غير مسموح لهم بدخولها. تُطبَّق قواعد المناطق لحظة التعيين."
+      },
       desc: {
-        en: "Room-based staff dispatching tool with six zones, each governed by role-based rules and capacity limits. Interactive CRUD on users and their zone assignments, with unassigned staff and unfilled mandatory zones highlighted. Zones enforce who may enter, such as reception accepting only receptionists and the archives excluding cleaning staff. Data persists in localStorage with a responsive, collapsible sidebar.",
-        fr: "Outil de répartition du personnel par salles : six zones régies par des règles de rôle et de capacité. CRUD interactif sur les utilisateurs et leurs affectations, avec signalement du personnel non affecté et des zones obligatoires vides. Règles d'accès par zone, comme l'exclusion du personnel d'entretien des archives. Données conservées dans le localStorage, avec barre latérale responsive et repliable.",
-        ar: "أداة لتوزيع الموظفين على الغرف: ست مناطق تحكمها قواعد حسب الدور والسعة. إدارة تفاعلية للمستخدمين وتعييناتهم، مع إبراز الموظفين غير المعينين والمناطق الإلزامية الفارغة. قواعد دخول لكل منطقة، مثل قصر الاستقبال على موظفي الاستقبال واستبعاد عمال النظافة من الأرشيف. تُحفظ البيانات في localStorage مع شريط جانبي متجاوب وقابل للطي."
+        en: "Interactive floor-plan tool with six zones, each governed by role-based rules and capacity limits. Drag-and-drop assignment, highlighted unfilled zones, and data saved in the browser with a responsive sidebar.",
+        fr: "Outil interactif de plan d'étage avec six zones régies par des règles de rôle et de capacité. Affectation par glisser-déposer, zones vides signalées, données sauvegardées dans le navigateur.",
+        ar: "أداة تفاعلية لمخطط الطوابق بست مناطق، تحكمها قواعد حسب الدور والسعة. تعيين بالسحب والإفلات، وإبراز المناطق الفارغة، وحفظ البيانات في المتصفح."
       }
     },
     {
       name: "dxcan",
+      grad: "linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #020617 100%)",
       tags: ["Rust", "CLI", "Nmap", "OpenVAS", "Security"],
       repo: "https://github.com/Sami-Regragui-Work/public-full-dxcan",
       frontend: null, live: null,
+      problem: {
+        en: "Security checks spread across separate tools. One fast Rust CLI runs them as independent subcommands.",
+        fr: "Les contrôles de sécurité sont éparpillés entre plusieurs outils. Un seul CLI Rust les exécute en sous-commandes indépendantes.",
+        ar: "فحوصات الأمن موزعة على أدوات منفصلة. أداة سطر أوامر واحدة بـ Rust تنفذها كأوامر فرعية مستقلة."
+      },
       desc: {
-        en: "Rust CLI security scanner covering port and OS scanning, CVE matching and TLS/misconfiguration checks, with CSV and Markdown reporting. Benchmarked against nmap, nuclei and OpenVAS, reaching up to 280x faster CVE analysis than the reference tools. Organized into nine subcommands that can each run on their own.",
-        fr: "Scanner de sécurité CLI en Rust (scan de ports/OS, correspondance CVE, contrôles TLS/mauvaise configuration) avec rapports CSV et Markdown. Benchmark face à nmap, nuclei et OpenVAS : jusqu'à 280x plus rapide sur l'analyse CVE. Organisé en neuf sous-commandes exécutables indépendamment.",
-        ar: "ماسح أمني بسطر الأوامر مكتوب بـ Rust، يغطي فحص المنافذ وأنظمة التشغيل ومطابقة CVE وفحوصات TLS وسوء الإعداد، مع تقارير CSV و Markdown. تمت مقارنته مع nmap و nuclei و OpenVAS، وبلغ تسريع تحليل CVE حتى 280 ضعفا. منظم في تسع أوامر فرعية يمكن تشغيل كل واحد منها بشكل مستقل."
+        en: "Rust CLI security scanner covering port and OS scanning, CVE matching and TLS/misconfiguration checks, with CSV and Markdown reporting. Benchmarked against nmap, nuclei and OpenVAS, reaching up to 280x faster CVE analysis.",
+        fr: "Scanner de sécurité CLI en Rust : scan de ports et OS, correspondance CVE, contrôles TLS et mauvaise configuration, rapports CSV et Markdown. Jusqu'à 280x plus rapide sur l'analyse CVE face à nmap, nuclei et OpenVAS.",
+        ar: "ماسح أمني بسطر الأوامر بـ Rust: فحص المنافذ وأنظمة التشغيل ومطابقة CVE وفحوصات TLS، مع تقارير CSV و Markdown. أسرع بحتى 280 ضعفا في تحليل CVE مقارنة بـ nmap و nuclei و OpenVAS."
       }
     },
     {
       name: "Event Ticketing REST API",
+      grad: "linear-gradient(135deg, #581c87 0%, #3b0764 55%, #0f0a1f 100%)",
       tags: ["Java", "Spring Boot", "Spring Data JPA", "PostgreSQL", "Testcontainers"],
       repo: "https://github.com/Sami-Regragui-Work/EventPro-API",
       frontend: null, live: null,
+      problem: {
+        en: "Concurrent buyers can oversell the last seat, and abandoned carts hold seats forever.",
+        fr: "Des acheteurs simultanés peuvent survendre la dernière place, et les paniers abandonnés bloquent les places indéfiniment.",
+        ar: "قد يشتري عدة أشخاص آخر مقعد في الوقت نفسه، والسلات المهجورة تحجز المقاعد إلى الأبد."
+      },
       desc: {
-        en: "Event ticketing REST API with pessimistic-lock seat reservation, promo codes and idempotent payments. Organizers publish events with ticket categories, while clients reserve seats for 10 minutes. Unpaid reservations expire automatically through a scheduled job, and tickets are validated once at check-in. A Testcontainers test checks concurrent booking of the last seat.",
-        fr: "API de billetterie avec réservation sous verrou pessimiste, codes promo et paiements idempotents. Les organisateurs publient des événements avec catégories de billets, et les réservations non payées expirent via une tâche planifiée. Billets validés une seule fois à l'entrée, et test Testcontainers sur la réservation concurrente de la dernière place.",
-        ar: "واجهة REST لبيع تذاكر الفعاليات مع حجز المقاعد بقفل تشاؤمي، وأكواد الخصم، ومدفوعات مُعرّفة بمفتاح لمنع التكرار. ينشر المنظمون الفعاليات مع فئات التذاكر، ويحتفظ العملاء بالمقاعد لمدة 10 دقائق. تنتهي الحجوزات غير المدفوعة تلقائيا عبر مهمة مجدولة، وتُتحقق التذاكر مرة واحدة عند الدخول. اختبار Testcontainers يتحقق من الحجز المتزامن لآخر مقعد."
+        en: "Event ticketing REST API with pessimistic-lock seat reservation, promo codes and idempotent payments. Unpaid reservations expire automatically through a scheduled job. A Testcontainers test checks concurrent booking of the last seat.",
+        fr: "API de billetterie avec réservation sous verrou pessimiste, codes promo et paiements idempotents. Les réservations non payées expirent via une tâche planifiée. Test Testcontainers sur la réservation concurrente de la dernière place.",
+        ar: "واجهة REST لبيع التذاكر مع حجز المقاعد بقفل تشاؤمي، وأكواد الخصم، ومدفوعات مُعرّفة بمفتاح لمنع التكرار. الحجوزات غير المدفوعة تنتهي تلقائيا عبر مهمة مجدولة."
       }
     },
     {
       name: "Clinic Management System",
+      grad: "linear-gradient(135deg, #0e7490 0%, #164e63 55%, #082f49 100%)",
       tags: ["Java EE", "Servlets", "JSP / JSTL", "JPA / Hibernate", "PostgreSQL", "JUnit 5"],
       repo: "https://github.com/Sami-Regragui-Work/ClinicManagerJEE",
       frontend: null, live: null,
+      problem: {
+        en: "Appointment booking that respects availability, breaks, leave and lead-time rules.",
+        fr: "Prise de rendez-vous qui respecte les disponibilités, les pauses, les congés et les délais.",
+        ar: "حجز مواعيد يحترم التوفر والاستراحات والإجازات وقواعد المهلة."
+      },
       desc: {
-        en: "Clinic management system covering patients, doctors, departments, specialties, availabilities, appointments and medical notes. The main focus is complex time-slot management: auto-generated 30-minute slots with buffers, lunch breaks, leave and absence exclusions, and lead-time and cancellation rules. Built with Servlets, JSP/JSTL, JPA/Hibernate and PostgreSQL, with JUnit 5 and Mockito tests.",
-        fr: "Système de gestion de clinique couvrant patients, médecins, départements, spécialités, disponibilités, rendez-vous et notes médicales. Point fort : gestion complexe des créneaux (créneaux de 30 min avec tampons, pauses déjeuner, congés, délais de réservation et d'annulation). Construit avec Servlets, JSP/JSTL, JPA/Hibernate et PostgreSQL, avec tests JUnit 5 et Mockito.",
-        ar: "نظام لإدارة العيادة يغطي المرضى والأطباء والأقسام والتخصصات والتوفر والمواعيد والملاحظات الطبية. التركيز الرئيسي على إدارة الفترات الزمنية المعقدة: فترات آلية مدتها 30 دقيقة مع هوامش، وفترات استراحة الغداء، واستبعاد الإجازات والغيابات، وقواعد مهلة الحجز والإلغاء. مبني بـ Servlets و JSP/JSTL و JPA/Hibernate و PostgreSQL، مع اختبارات JUnit 5 و Mockito."
+        en: "Clinic management system covering patients, doctors, departments, specialties, availabilities, appointments and medical notes. Auto-generated 30-minute time slots with buffers, lunch breaks, leave exclusions and lead-time rules, built with Servlets, JSP/JSTL and JPA/Hibernate.",
+        fr: "Système de gestion de clinique : patients, médecins, départements, disponibilités, rendez-vous et notes médicales. Créneaux de 30 min générés automatiquement, avec tampons, pauses déjeuner, congés et délais, construit avec Servlets, JSP/JSTL et JPA/Hibernate.",
+        ar: "نظام لإدارة العيادة يغطي المرضى والأطباء والتوفر والمواعيد والملاحظات الطبية. فترات زمنية آلية مدتها 30 دقيقة مع هوامش واستراحات واستبعاد الإجازات، مبني بـ Servlets و JSP/JSTL و JPA/Hibernate."
       }
     },
     {
       name: "User Management REST API",
-      tags: ["Spring MVC", "Spring Data JPA", "H2", "JUnit 5", "Mockito"],
+      grad: "linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #020617 100%)",
+      tags: ["Spring MVC", "Spring Data JPA", "H2", "BCrypt", "JUnit 5", "MockMvc"],
       repo: "https://github.com/Sami-Regragui-Work/User-Management-API",
       frontend: null, live: null,
+      problem: {
+        en: "Admin and user roles kept separate, with passwords never returned by the API.",
+        fr: "Rôles admin et utilisateur bien séparés, avec des mots de passe jamais renvoyés par l'API.",
+        ar: "فصل واضح بين دور المشرف والمستخدم، مع عدم إرجاع كلمات المرور في الواجهة أبدا."
+      },
       desc: {
-        en: "Native Spring MVC REST API for user management, with admin CRUD endpoints and user endpoints for profile and password management. Includes Bean Validation, global exception handling, BCrypt hashing and interceptor-based authentication. Packaged without Spring Boot, with data stored through Spring Data JPA on H2 and tested with JUnit 5, Mockito and MockMvc.",
-        fr: "API REST Spring MVC native pour la gestion des utilisateurs : endpoints CRUD admin et endpoints du profil courant (profil, mot de passe). Inclut Bean Validation, gestion globale des exceptions, hachage BCrypt et authentification par intercepteur. Packagée sans Spring Boot, données via Spring Data JPA sur H2, tests avec JUnit 5, Mockito et MockMvc.",
-        ar: "واجهة REST بـ Spring MVC لإدارة المستخدمين، مع نقاط CRUD للمشرف ونقاط للمستخدم لإدارة الملف الشخصي وكلمة المرور. تشمل Bean Validation ومعالجة الاستثناءات بشكل عام وتشفير BCrypt والمصادقة عبر المعترضات. مُعدّة دون Spring Boot، والبيانات عبر Spring Data JPA على H2، مع اختبارات JUnit 5 و Mockito و MockMvc."
+        en: "Native Spring MVC REST API for user management, with admin CRUD endpoints and user endpoints for profile and password changes. Bean Validation, global exception handling and BCrypt hashing, packaged without Spring Boot.",
+        fr: "API REST Spring MVC native pour la gestion des utilisateurs : CRUD admin et endpoints du profil courant. Bean Validation, gestion globale des exceptions et hachage BCrypt, sans Spring Boot.",
+        ar: "واجهة REST بـ Spring MVC لإدارة المستخدمين، مع نقاط CRUD للمشرف ونقاط للمستخدم لإدارة الملف والكلمة. Bean Validation ومعالجة الاستثناءات وتشفير BCrypt، دون Spring Boot."
       }
     }
   ];
+
+  /* ===== All repos. hidden = true for tests, exercises, demos, duplicates or superseded versions ===== */
+  const ALL_REPOS = [
+    { name: "EventPro-API", hidden: false },
+    { name: "cv-html-pdf", hidden: false },
+    { name: "User-Management-API", hidden: false },
+    { name: "spring-mvc-demo", hidden: true },
+    { name: "ClinicManagerJEE", hidden: false },
+    { name: "sagc_vue", hidden: false },
+    { name: "sagc_api", hidden: false },
+    { name: "hbmc-postgres", hidden: false },
+    { name: "skitfold", hidden: false },
+    { name: "test-irm", hidden: true },
+    { name: "hotel-booking-management", hidden: false },
+    { name: "ConvergeThread", hidden: false },
+    { name: "public-full-dxcan", hidden: false },
+    { name: "dxcan", hidden: true },
+    { name: "Reinforcement", hidden: false },
+    { name: "ts-livecoding", hidden: true },
+    { name: "TS-veille", hidden: true },
+    { name: "E-Bank", hidden: false },
+    { name: "test", hidden: true },
+    { name: "Frontend-revise", hidden: true },
+    { name: "easy_colocation", hidden: false },
+    { name: "book-workshop-laravel", hidden: true },
+    { name: "TifawinSouk-v2", hidden: false },
+    { name: "TifawinSouk-E-Commerce", hidden: false },
+    { name: "talentHub-Collectif", hidden: false },
+    { name: "SAMVC", hidden: false },
+    { name: "Unity-Care-Clinic-V3", hidden: false },
+    { name: "Unity-Care-Clinic-V2", hidden: true },
+    { name: "mis-en-php-crud", hidden: true },
+    { name: "Unity-Care-Clinic-V1", hidden: true },
+    { name: "WorkSpace-Staff-Manager", hidden: false },
+    { name: "Object-Manipulation", hidden: true },
+    { name: "job-listing-preparation", hidden: true },
+    { name: "CV-Builder-TW-VanillaJs", hidden: false },
+    { name: "Autofill-CSS-Styling-Control", hidden: true },
+    { name: "JavaScript-Documentation-By-Adnane", hidden: true },
+    { name: "js-dom", hidden: true },
+    { name: "Job-listing-1st", hidden: true },
+    { name: "mis-en-s-2", hidden: true },
+    { name: "Mise-en-situation1", hidden: true },
+    { name: "Nexus-E-Sports-Designed", hidden: false },
+    { name: "NexusEsport-brief", hidden: true },
+    { name: "SAS-2-2025", hidden: true },
+    { name: "Mini_projet", hidden: true },
+    { name: "SAS2-Challenges-Array", hidden: true }
+  ];
+
+  const VISIBLE_REPOS = ALL_REPOS.filter(r => !r.hidden);
+  const TOTAL_PROJECTS = VISIBLE_REPOS.length;
 
   const EXPERIENCE = [
     {
@@ -468,7 +757,7 @@
       where: { en: "Swiftstream · Remote, Quebec, Canada", fr: "Swiftstream · Télétravail, Québec, Canada", ar: "Swiftstream · عن بعد، كيبيك، كندا" },
       desc: {
         en: "Redesigned the NextTalent website on WordPress with theme and plugin customization and responsive CSS/JavaScript. Collaborated with a Canadian team in English and French.",
-        fr: "Refonte du site NextTalent sous WordPress : personnalisation des thèmes et plugins, CSS/JavaScript responsive. Collaboration avec une équipe canadienne en anglais et en français.",
+        fr: "Refonte du site NextTalent sous WordPress : thèmes et plugins personnalisés, CSS/JavaScript responsive. Collaboration avec une équipe canadienne en anglais et en français.",
         ar: "إعادة تصميم موقع NextTalent على WordPress مع تخصيص القوالب والإضافات، وCSS/JavaScript متجاوب. عملت مع فريق كندي بالإنجليزية والفرنسية."
       }
     }
@@ -498,41 +787,60 @@
   ];
 
   let currentLang = "en";
+  let allOpen = false;
 
   function pick(obj) { return obj[currentLang] || obj.en; }
+  function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
   function renderProjects() {
     const grid = document.getElementById("project-grid");
-    const labels = T[currentLang];
-    grid.innerHTML = "";
-    PROJECTS.forEach(p => {
-      const card = document.createElement("article");
-      card.className = "card";
-      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join("");
-      const liveBadge = p.live ? `<span class="badge">${labels.badge_live}</span><br>` : "";
+    const L = T[currentLang];
+    grid.innerHTML = PROJECTS.map(p => {
+      const tags = p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("");
+      const live = p.live ? `<span class="badge">${L.badge_live}</span>` : "";
       const links = [
-        `<a href="${p.repo}" target="_blank" rel="noopener">${labels.view_code}</a>`,
-        p.frontend ? `<a href="${p.frontend}" target="_blank" rel="noopener">${labels.frontend}</a>` : "",
-        p.live ? `<a href="${p.live}" target="_blank" rel="noopener">${labels.view_live}</a>` : ""
+        `<a href="${p.repo}" target="_blank" rel="noopener">${L.view_code} →</a>`,
+        p.frontend ? `<a href="${p.frontend}" target="_blank" rel="noopener">${L.frontend} →</a>` : "",
+        p.live ? `<a href="${p.live}" target="_blank" rel="noopener">${L.view_live} →</a>` : ""
       ].filter(Boolean).join("");
-      card.innerHTML = `
-        ${liveBadge}
-        <h3>${p.name}</h3>
-        <div class="tags">${tags}</div>
-        <p>${pick(p.desc)}</p>
-        <div class="links">${links}</div>`;
-      grid.appendChild(card);
-    });
+      return `
+        <article class="card">
+          <div class="media" style="background:${p.grad}" role="img" aria-label="${esc(L.placeholder)}: ${esc(p.name)}">
+            <!-- To use a real screenshot, replace this div with: <img src="screenshots/name.png" alt="..."> -->
+            <span>${L.placeholder}: ${esc(p.name)}</span>
+          </div>
+          <div class="card-body">
+            ${live}
+            <h3>${esc(p.name)}</h3>
+            <p class="problem"><b>${L.problem_label}</b>${esc(pick(p.problem))}</p>
+            <p class="muted" style="font-size:var(--fs-small)">${esc(pick(p.desc))}</p>
+            <div class="tags" aria-label="${L.tech_label}">${tags}</div>
+            <div class="links">${links}</div>
+          </div>
+        </article>`;
+    }).join("");
+  }
+
+  function renderAllProjects() {
+    const list = document.getElementById("all-list");
+    const L = T[currentLang];
+    list.innerHTML = VISIBLE_REPOS.map(r => `
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/${encodeURIComponent(r.name)}" target="_blank" rel="noopener">${esc(r.name)}</a>
+        <span class="muted">${L.repo_link}</span>
+      </li>`).join("");
+    document.getElementById("project-count").textContent = String(TOTAL_PROJECTS);
+    document.getElementById("project-count").setAttribute("aria-label", TOTAL_PROJECTS + " " + L.projects_title);
   }
 
   function renderList(id, items) {
     const el = document.getElementById(id);
     el.innerHTML = items.map(i => `
-      <div class="item">
-        <div class="when">${pick(i.when)}</div>
-        <h3>${pick(i.role)}</h3>
-        <div class="where">${pick(i.where)}</div>
-        ${i.desc ? `<p class="muted" style="margin:8px 0 0">${pick(i.desc)}</p>` : ""}
+      <div class="tl-item">
+        <div class="tl-when">${pick(i.when)}</div>
+        <h3 class="tl-role">${esc(pick(i.role))}</h3>
+        <div class="tl-where">${esc(pick(i.where))}</div>
+        ${i.desc ? `<p class="tl-desc">${esc(pick(i.desc))}</p>` : ""}
       </div>`).join("");
   }
 
@@ -544,7 +852,11 @@
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
-      if (T[currentLang][key] !== undefined) el.textContent = T[currentLang][key];
+      const val = T[currentLang][key];
+      if (val === undefined) return;
+      // about paragraphs contain <strong> markup, which is set from our own trusted strings
+      if (key === "about_p1" || key === "about_p2") el.innerHTML = val;
+      else el.textContent = val;
     });
 
     document.querySelectorAll("[data-lang]").forEach(btn => {
@@ -552,7 +864,9 @@
     });
 
     document.getElementById("footer-text").textContent = T[currentLang].footer;
+    document.getElementById("toggle-all").textContent = allOpen ? T[currentLang].btn_hide_projects : T[currentLang].btn_all_projects;
     renderProjects();
+    renderAllProjects();
     renderList("timeline", EXPERIENCE);
     renderList("education", EDUCATION);
   }
@@ -564,6 +878,15 @@
       url.searchParams.set("lang", currentLang);
       history.replaceState(null, "", url);
     });
+  });
+
+  const toggle = document.getElementById("toggle-all");
+  const panel = document.getElementById("all-panel");
+  toggle.addEventListener("click", () => {
+    allOpen = !allOpen;
+    panel.hidden = !allOpen;
+    toggle.setAttribute("aria-expanded", String(allOpen));
+    toggle.textContent = allOpen ? T[currentLang].btn_hide_projects : T[currentLang].btn_all_projects;
   });
 
   const params = new URLSearchParams(window.location.search);
