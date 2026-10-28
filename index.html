@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sami Regragui · Full-Stack Developer · Java / Angular</title>
+  <meta name="description" content="Sami Regragui, full-stack developer (Java / Angular, Laravel / Vue.js, Python). Projects, experience and contact.">
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #171e26;
+      --surface-2: #1f2933;
+      --text: #e6edf3;
+      --muted: #9aa7b4;
+      --accent: #4fd1c5;
+      --accent-2: #f6ad55;
+      --border: #2a3441;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Arabic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 64px 0; border-top: 1px solid var(--border); }
+    h1, h2, h3 { line-height: 1.25; margin: 0 0 12px; }
+    h2 { font-size: 1.6rem; }
+    h3 { font-size: 1.15rem; }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(15, 20, 25, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; flex-wrap: wrap; }
+    .brand { font-weight: 700; color: var(--text); }
+    .nav-links { display: flex; gap: 18px; font-size: 0.95rem; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .lang { display: flex; gap: 6px; }
+    .lang button {
+      background: transparent; color: var(--muted);
+      border: 1px solid var(--border); border-radius: 999px;
+      padding: 4px 10px; font: inherit; font-size: 0.85rem; cursor: pointer;
+    }
+    .lang button[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+
+    .hero { padding: 96px 0 72px; border-top: none; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    .hero .role { color: var(--accent); font-size: 1.2rem; margin-bottom: 16px; }
+    .hero .intro { max-width: 640px; color: var(--muted); font-size: 1.05rem; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .btn {
+      display: inline-block; padding: 10px 18px; border-radius: 8px;
+      border: 1px solid var(--accent); color: var(--accent); font-weight: 600;
+    }
+    .btn.primary { background: var(--accent); color: var(--bg); }
+    .btn:hover { text-decoration: none; opacity: 0.9; }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      display: flex; flex-direction: column;
+    }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+    .tag {
+      font-size: 0.78rem; padding: 3px 9px; border-radius: 999px;
+      background: var(--surface-2); color: var(--text); border: 1px solid var(--border);
+    }
+    .card .links { margin-top: auto; display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.92rem; }
+    .badge { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--accent-2); margin-bottom: 8px; }
+
+    .timeline { display: grid; gap: 16px; }
+    .item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 22px;
+    }
+    .item .when { color: var(--accent-2); font-size: 0.9rem; }
+    .item .where { color: var(--muted); font-size: 0.95rem; }
+
+    .skill-group { margin-bottom: 20px; }
+    .skill-group h3 { font-size: 1rem; color: var(--accent); margin-bottom: 8px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skills span {
+      padding: 6px 12px; border-radius: 8px;
+      background: var(--surface); border: 1px solid var(--border); font-size: 0.92rem;
+    }
+
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+    html[dir="rtl"] body { font-family: "Noto Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif; }
+    html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+
+    @media (max-width: 640px) {
+      section { padding: 48px 0; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top">Sami Regragui</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#projects" data-i18n="nav_projects"></a>
+      <a href="#experience" data-i18n="nav_experience"></a>
+      <a href="#skills" data-i18n="nav_skills"></a>
+      <a href="#contact" data-i18n="nav_contact"></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+      <button type="button" data-lang="ar" aria-pressed="false">AR</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container">
+      <h1>Sami Regragui</h1>
+      <p class="role" data-i18n="role"></p>
+      <p class="intro" data-i18n="intro"></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects" data-i18n="cta_projects"></a>
+        <a class="btn" href="mailto:sami.regragui.work@protonmail.com">sami.regragui.work@protonmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 data-i18n="about_title"></h2>
+      <p class="muted" data-i18n="about_text"></p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2 data-i18n="projects_title"></h2>
+      <p class="muted" data-i18n="projects_intro"></p>
+      <div class="grid" id="project-grid"></div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2 data-i18n="exp_title"></h2>
+      <div class="timeline" id="timeline"></div>
+      <h3 style="margin-top:32px" data-i18n="edu_title"></h3>
+      <div class="timeline" id="education"></div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container">
+      <h2 data-i18n="skills_title"></h2>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_languages"></h3>
+        <div class="skills">
+          <span>Java SE</span><span>Python</span><span>PHP</span><span>JavaScript</span><span>Rust</span><span>C</span><span>SQL</span><span>Bash</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_backend"></h3>
+        <div class="skills">
+          <span>Spring</span><span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate / JPA</span>
+          <span>Jakarta EE (JEE)</span><span>JSP / JSTL</span><span>JDBC</span><span>Laravel</span><span>Blade</span><span>PDO</span><span>WebSocket</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_frontend"></h3>
+        <div class="skills">
+          <span>Angular</span><span>Vue.js</span><span>HTML</span><span>CSS</span><span>jQuery</span><span>AJAX</span><span>Tailwind CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_data"></h3>
+        <div class="skills">
+          <span>MySQL</span><span>PostgreSQL</span><span>H2</span>
+          <span data-i18n="sk_python_data"></span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_security"></h3>
+        <div class="skills">
+          <span>Cisco CCNA</span><span>Nmap</span><span>OpenVAS</span><span>nuclei</span><span>TLS</span><span>SDN OpenDaylight</span><span>Mininet</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_tools"></h3>
+        <div class="skills">
+          <span>Linux</span><span>Docker</span><span>Git & GitHub</span><span>Maven</span><span>Postman</span><span>Swagger / OpenAPI</span>
+          <span>IntelliJ IDEA</span><span>VS Code</span><span>phpMyAdmin</span><span>Figma</span><span>Jira</span><span>StarUML</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_testing"></h3>
+        <div class="skills">
+          <span>JUnit 5</span><span>Mockito</span><span>MockMvc</span><span>Testcontainers</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_concepts"></h3>
+        <div class="skills">
+          <span>MVC</span><span>OOP</span><span>SOLID</span><span>UML</span><span>ERD</span><span>REST APIs</span><span>JWT / OAuth</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3 data-i18n="sk_languages_spoken"></h3>
+        <div class="skills">
+          <span data-i18n="lang_ar"></span><span data-i18n="lang_en"></span><span data-i18n="lang_fr"></span>
+        </div>
+      </div>
+
+      <p class="muted" style="margin-top:16px" data-i18n="certs"></p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <h2 data-i18n="contact_title"></h2>
+      <p class="muted" data-i18n="contact_text"></p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:sami.regragui.work@protonmail.com">Email</a>
+        <a class="btn" href="https://www.linkedin.com/in/samiregragui" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Sami-Regragui-Work" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <span id="footer-text"></span>
+  </div>
+</footer>
+
+<script>
+  const START_YEAR = 2026;
+  const CURRENT_YEAR = new Date().getFullYear();
+  const YEAR_TEXT = CURRENT_YEAR > START_YEAR ? START_YEAR + " - " + CURRENT_YEAR : String(START_YEAR);
+
+  const T = {
+    en: {
+      nav_about: "About", nav_projects: "Projects", nav_experience: "Experience",
+      nav_skills: "Skills", nav_contact: "Contact",
+      role: "Full-Stack Developer · Java / Angular · Backend-leaning",
+      intro: "I build web applications end to end: APIs, secured back ends and the front ends that use them. Currently training at YouCode (UM6P) in Java and Angular.",
+      cta_projects: "See my projects",
+      about_title: "About me",
+      about_text: "I hold a Bachelor in Computer Science, Networks and Multimedia (IRM), and I'm a full-stack developer, with the most experience in the Laravel and Vue.js stack. I'm now specializing in Java and Angular, and I'm leaning toward backend work. I also have strong hands-on Python experience, especially data processing for images and audio. What I love most is coding in general: business logic and problem solving.",
+      projects_title: "Projects",
+      projects_intro: "A selection of my work, from full-stack applications to APIs and security tooling.",
+      exp_title: "Experience",
+      edu_title: "Education",
+      skills_title: "Skills",
+      sk_languages: "Programming languages",
+      sk_backend: "Backend",
+      sk_frontend: "Frontend",
+      sk_data: "Databases and data",
+      sk_python_data: "Python: image and audio processing",
+      sk_security: "Networking and security",
+      sk_tools: "Tools",
+      sk_testing: "Testing",
+      sk_concepts: "Concepts and methods",
+      sk_languages_spoken: "Languages",
+      lang_ar: "Arabic (native)", lang_en: "English (B2)", lang_fr: "French (B1)",
+      certs: "Certification: Cisco Certified Network Associate (CCNA), 2023.",
+      contact_title: "Contact",
+      contact_text: "Open to full-stack Java / Angular and Laravel roles. Feel free to get in touch.",
+      footer: "© " + YEAR_TEXT + " Sami Regragui",
+      view_code: "Source code",
+      view_live: "Live demo",
+      badge_live: "Live",
+      frontend: "Frontend"
+    },
+    fr: {
+      nav_about: "À propos", nav_projects: "Projets", nav_experience: "Expérience",
+      nav_skills: "Compétences", nav_contact: "Contact",
+      role: "Développeur Full-Stack · Java / Angular · Orienté backend",
+      intro: "Je conçois des applications web de bout en bout : APIs, back-ends sécurisés et front-ends qui les utilisent. Actuellement en formation à YouCode (UM6P) en Java et Angular.",
+      cta_projects: "Voir mes projets",
+      about_title: "À propos de moi",
+      about_text: "Titulaire d'une licence en Informatique, Réseaux et Multimédia (IRM), je suis développeur full-stack, avec le plus d'expérience sur la stack Laravel et Vue.js. Je me spécialise maintenant en Java et Angular, et je m'oriente vers le backend. J'ai aussi une solide expérience pratique en Python, notamment pour le traitement de données (images, audio). Ce que j'aime par-dessus tout, c'est coder en général : la logique métier et la résolution de problèmes.",
+      projects_title: "Projets",
+      projects_intro: "Une sélection de mes réalisations, des applications full-stack aux APIs et outils de sécurité.",
+      exp_title: "Expérience",
+      edu_title: "Formation",
+      skills_title: "Compétences",
+      sk_languages: "Langages de programmation",
+      sk_backend: "Backend",
+      sk_frontend: "Frontend",
+      sk_data: "Bases de données et données",
+      sk_python_data: "Python : traitement d'images et d'audio",
+      sk_security: "Réseaux et sécurité",
+      sk_tools: "Outils",
+      sk_testing: "Tests",
+      sk_concepts: "Concepts et méthodes",
+      sk_languages_spoken: "Langues",
+      lang_ar: "Arabe (langue maternelle)", lang_en: "Anglais (B2)", lang_fr: "Français (B1)",
+      certs: "Certification : Cisco Certified Network Associate (CCNA), 2023.",
+      contact_title: "Contact",
+      contact_text: "Ouvert aux postes Full-Stack Java / Angular et Laravel. N'hésitez pas à me contacter.",
+      footer: "© " + YEAR_TEXT + " Sami Regragui",
+      view_code: "Code source",
+      view_live: "Démo en ligne",
+      badge_live: "En ligne",
+      frontend: "Frontend"
+    },
+    ar: {
+      nav_about: "نبذة", nav_projects: "المشاريع", nav_experience: "الخبرة",
+      nav_skills: "المهارات", nav_contact: "تواصل",
+      role: "مطور متكامل · Java / Angular · يميل إلى الخلفية",
+      intro: "أبني تطبيقات ويب من البداية إلى النهاية: واجهات برمجية، وخوادم خلفية آمنة، والواجهات الأمامية التي تستخدمها. أتابع حاليا تكويني في YouCode (UM6P) في Java و Angular.",
+      cta_projects: "شاهد مشاريعي",
+      about_title: "نبذة عني",
+      about_text: "حاصل على إجازة في علوم الحاسوب والشبكات والوسائط المتعددة (IRM)، ومطور متكامل، وأملك أكبر خبرة في مجموعة Laravel و Vue.js. وأتخصص حاليا في Java و Angular، وأميل نحو تطوير الخلفية. ولدي خبرة عملية قوية في Python، خاصة في معالجة البيانات مثل الصور والصوت. ما أحبه أكثر هو البرمجة بشكل عام: منطق الأعمال وحل المشكلات.",
+      projects_title: "المشاريع",
+      projects_intro: "مجموعة مختارة من أعمالي، من التطبيقات المتكاملة إلى الواجهات البرمجية وأدوات الأمن.",
+      exp_title: "الخبرة",
+      edu_title: "التكوين",
+      skills_title: "المهارات",
+      sk_languages: "لغات البرمجة",
+      sk_backend: "الخلفية",
+      sk_frontend: "الواجهة الأمامية",
+      sk_data: "قواعد البيانات والبيانات",
+      sk_python_data: "Python: معالجة الصور والصوت",
+      sk_security: "الشبكات والأمن",
+      sk_tools: "الأدوات",
+      sk_testing: "الاختبار",
+      sk_concepts: "المفاهيم والمنهجيات",
+      sk_languages_spoken: "اللغات",
+      lang_ar: "العربية (اللغة الأم)", lang_en: "الإنجليزية (B2)", lang_fr: "الفرنسية (B1)",
+      certs: "شهادة: Cisco Certified Network Associate (CCNA)، 2023.",
+      contact_title: "تواصل معي",
+      contact_text: "منفتح على فرص Full-Stack Java / Angular و Laravel. لا تتردد في التواصل معي.",
+      footer: "© " + YEAR_TEXT + " Sami Regragui",
+      view_code: "الكود المصدري",
+      view_live: "نسخة تجريبية",
+      badge_live: "متاح",
+      frontend: "الواجهة الأمامية"
+    }
+  };
+
+  // Project descriptions follow the CV in each language.
+  const PROJECTS = [
+    {
+      name: "ConvergeThread",
+      tags: ["Laravel 12", "Reverb", "LiveKit", "CodeMirror 6", "Vite", "MySQL"],
+      repo: "https://github.com/Sami-Regragui-Work/ConvergeThread",
+      frontend: null, live: null,
+      desc: {
+        en: "Thread-based, tenant-oriented chat platform with customizable roles, permissions and flexible group interactions. Bulk and individual operations such as mentions, invitations and muting, with real-time updates through Laravel Reverb. Each tenant workspace stays isolated, with groups, duos and temporary merge sessions for cross-team conversations. Messages support Markdown, attachments and per-channel muting.",
+        fr: "Plateforme de chat multi-locataires basée sur des fils de discussion, avec rôles et permissions personnalisables et groupes flexibles. Actions groupées et individuelles (mentions, invitations, sourdine) en temps réel via Laravel Reverb. Espaces isolés par locataire, avec groupes, duos et sessions de fusion temporaires. Messages en Markdown, pièces jointes et éditeur CodeMirror.",
+        ar: "منصة دردشة متعددة المستأجرين تعتمد على الخيوط، مع أدوار وصلاحيات قابلة للتخصيص ومجموعات مرنة. عمليات جماعية وفردية مثل الإشارات والدعوات وكتم الإشعارات، مع تحديثات فورية عبر Laravel Reverb. كل مساحة عمل معزولة، مع مجموعات وثنائيات وجلسات دمج مؤقتة بين الفرق. تدعم الرسائل Markdown والمرفقات."
+      }
+    },
+    {
+      name: "Auth API",
+      tags: ["Laravel 12", "JWT", "Socialite", "Swagger", "Vue.js"],
+      repo: "https://github.com/Sami-Regragui-Work/sagc_api",
+      frontend: "https://github.com/Sami-Regragui-Work/sagc_vue",
+      live: null,
+      desc: {
+        en: "REST authentication service with JWT sessions, Google OAuth sign-in, token refresh and user CRUD, documented with interactive Swagger/OpenAPI so every endpoint can be tested directly from the browser. Refresh tokens keep sessions active without repeated logins.",
+        fr: "Service d'authentification REST avec sessions JWT, connexion Google OAuth, rafraîchissement des tokens et CRUD utilisateurs. Documenté avec Swagger/OpenAPI interactif pour tester chaque endpoint directement depuis le navigateur. Les refresh tokens maintiennent les sessions actives sans reconnexion répétée.",
+        ar: "خدمة مصادقة REST مع جلسات JWT وتسجيل الدخول عبر Google OAuth وتجديد الرموز وإدارة المستخدمين، موثقة عبر Swagger/OpenAPI التفاعلي لاختبار كل نقطة نهاية مباشرة من المتصفح. تحافظ رموز التجديد على الجلسات دون إعادة تسجيل الدخول."
+      }
+    },
+    {
+      name: "Workspace Staff Manager",
+      tags: ["HTML5", "Tailwind CSS", "JavaScript", "localStorage"],
+      repo: "https://github.com/Sami-Regragui-Work/WorkSpace-Staff-Manager",
+      frontend: null,
+      live: "https://sami-regragui-work.github.io/WorkSpace-Staff-Manager/",
+      desc: {
+        en: "Room-based staff dispatching tool with six zones, each governed by role-based rules and capacity limits. Interactive CRUD on users and their zone assignments, with unassigned staff and unfilled mandatory zones highlighted. Zones enforce who may enter, such as reception accepting only receptionists and the archives excluding cleaning staff. Data persists in localStorage with a responsive, collapsible sidebar.",
+        fr: "Outil de répartition du personnel par salles : six zones régies par des règles de rôle et de capacité. CRUD interactif sur les utilisateurs et leurs affectations, avec signalement du personnel non affecté et des zones obligatoires vides. Règles d'accès par zone, comme l'exclusion du personnel d'entretien des archives. Données conservées dans le localStorage, avec barre latérale responsive et repliable.",
+        ar: "أداة لتوزيع الموظفين على الغرف: ست مناطق تحكمها قواعد حسب الدور والسعة. إدارة تفاعلية للمستخدمين وتعييناتهم، مع إبراز الموظفين غير المعينين والمناطق الإلزامية الفارغة. قواعد دخول لكل منطقة، مثل قصر الاستقبال على موظفي الاستقبال واستبعاد عمال النظافة من الأرشيف. تُحفظ البيانات في localStorage مع شريط جانبي متجاوب وقابل للطي."
+      }
+    },
+    {
+      name: "dxcan",
+      tags: ["Rust", "CLI", "Nmap", "OpenVAS", "Security"],
+      repo: "https://github.com/Sami-Regragui-Work/public-full-dxcan",
+      frontend: null, live: null,
+      desc: {
+        en: "Rust CLI security scanner covering port and OS scanning, CVE matching and TLS/misconfiguration checks, with CSV and Markdown reporting. Benchmarked against nmap, nuclei and OpenVAS, reaching up to 280x faster CVE analysis than the reference tools. Organized into nine subcommands that can each run on their own.",
+        fr: "Scanner de sécurité CLI en Rust (scan de ports/OS, correspondance CVE, contrôles TLS/mauvaise configuration) avec rapports CSV et Markdown. Benchmark face à nmap, nuclei et OpenVAS : jusqu'à 280x plus rapide sur l'analyse CVE. Organisé en neuf sous-commandes exécutables indépendamment.",
+        ar: "ماسح أمني بسطر الأوامر مكتوب بـ Rust، يغطي فحص المنافذ وأنظمة التشغيل ومطابقة CVE وفحوصات TLS وسوء الإعداد، مع تقارير CSV و Markdown. تمت مقارنته مع nmap و nuclei و OpenVAS، وبلغ تسريع تحليل CVE حتى 280 ضعفا. منظم في تسع أوامر فرعية يمكن تشغيل كل واحد منها بشكل مستقل."
+      }
+    },
+    {
+      name: "Event Ticketing REST API",
+      tags: ["Java", "Spring Boot", "Spring Data JPA", "PostgreSQL", "Testcontainers"],
+      repo: "https://github.com/Sami-Regragui-Work/EventPro-API",
+      frontend: null, live: null,
+      desc: {
+        en: "Event ticketing REST API with pessimistic-lock seat reservation, promo codes and idempotent payments. Organizers publish events with ticket categories, while clients reserve seats for 10 minutes. Unpaid reservations expire automatically through a scheduled job, and tickets are validated once at check-in. A Testcontainers test checks concurrent booking of the last seat.",
+        fr: "API de billetterie avec réservation sous verrou pessimiste, codes promo et paiements idempotents. Les organisateurs publient des événements avec catégories de billets, et les réservations non payées expirent via une tâche planifiée. Billets validés une seule fois à l'entrée, et test Testcontainers sur la réservation concurrente de la dernière place.",
+        ar: "واجهة REST لبيع تذاكر الفعاليات مع حجز المقاعد بقفل تشاؤمي، وأكواد الخصم، ومدفوعات مُعرّفة بمفتاح لمنع التكرار. ينشر المنظمون الفعاليات مع فئات التذاكر، ويحتفظ العملاء بالمقاعد لمدة 10 دقائق. تنتهي الحجوزات غير المدفوعة تلقائيا عبر مهمة مجدولة، وتُتحقق التذاكر مرة واحدة عند الدخول. اختبار Testcontainers يتحقق من الحجز المتزامن لآخر مقعد."
+      }
+    },
+    {
+      name: "Clinic Management System",
+      tags: ["Java EE", "Servlets", "JSP / JSTL", "JPA / Hibernate", "PostgreSQL", "JUnit 5"],
+      repo: "https://github.com/Sami-Regragui-Work/ClinicManagerJEE",
+      frontend: null, live: null,
+      desc: {
+        en: "Clinic management system covering patients, doctors, departments, specialties, availabilities, appointments and medical notes. The main focus is complex time-slot management: auto-generated 30-minute slots with buffers, lunch breaks, leave and absence exclusions, and lead-time and cancellation rules. Built with Servlets, JSP/JSTL, JPA/Hibernate and PostgreSQL, with JUnit 5 and Mockito tests.",
+        fr: "Système de gestion de clinique couvrant patients, médecins, départements, spécialités, disponibilités, rendez-vous et notes médicales. Point fort : gestion complexe des créneaux (créneaux de 30 min avec tampons, pauses déjeuner, congés, délais de réservation et d'annulation). Construit avec Servlets, JSP/JSTL, JPA/Hibernate et PostgreSQL, avec tests JUnit 5 et Mockito.",
+        ar: "نظام لإدارة العيادة يغطي المرضى والأطباء والأقسام والتخصصات والتوفر والمواعيد والملاحظات الطبية. التركيز الرئيسي على إدارة الفترات الزمنية المعقدة: فترات آلية مدتها 30 دقيقة مع هوامش، وفترات استراحة الغداء، واستبعاد الإجازات والغيابات، وقواعد مهلة الحجز والإلغاء. مبني بـ Servlets و JSP/JSTL و JPA/Hibernate و PostgreSQL، مع اختبارات JUnit 5 و Mockito."
+      }
+    },
+    {
+      name: "User Management REST API",
+      tags: ["Spring MVC", "Spring Data JPA", "H2", "JUnit 5", "Mockito"],
+      repo: "https://github.com/Sami-Regragui-Work/User-Management-API",
+      frontend: null, live: null,
+      desc: {
+        en: "Native Spring MVC REST API for user management, with admin CRUD endpoints and user endpoints for profile and password management. Includes Bean Validation, global exception handling, BCrypt hashing and interceptor-based authentication. Packaged without Spring Boot, with data stored through Spring Data JPA on H2 and tested with JUnit 5, Mockito and MockMvc.",
+        fr: "API REST Spring MVC native pour la gestion des utilisateurs : endpoints CRUD admin et endpoints du profil courant (profil, mot de passe). Inclut Bean Validation, gestion globale des exceptions, hachage BCrypt et authentification par intercepteur. Packagée sans Spring Boot, données via Spring Data JPA sur H2, tests avec JUnit 5, Mockito et MockMvc.",
+        ar: "واجهة REST بـ Spring MVC لإدارة المستخدمين، مع نقاط CRUD للمشرف ونقاط للمستخدم لإدارة الملف الشخصي وكلمة المرور. تشمل Bean Validation ومعالجة الاستثناءات بشكل عام وتشفير BCrypt والمصادقة عبر المعترضات. مُعدّة دون Spring Boot، والبيانات عبر Spring Data JPA على H2، مع اختبارات JUnit 5 و Mockito و MockMvc."
+      }
+    }
+  ];
+
+  const EXPERIENCE = [
+    {
+      when: { en: "05/2026 – 07/2026", fr: "05/2026 – 07/2026", ar: "05/2026 – 07/2026" },
+      role: { en: "Security R&D Intern: dxcan (Rust scanner)", fr: "Stagiaire R&D Sécurité : dxcan (scanner Rust)", ar: "متدرب بحث وتطوير في الأمن: dxcan (ماسح Rust)" },
+      where: { en: "DXC Technology Morocco & CDG · Technopolis, Rabat", fr: "DXC Technology Maroc & CDG · Technopolis, Rabat", ar: "DXC Technology المغرب و CDG · Technopolis، الرباط" },
+      desc: {
+        en: "Built dxcan, a Rust CLI security scanner, and benchmarked it against nmap, nuclei and OpenVAS.",
+        fr: "Développement de dxcan, un scanner de sécurité CLI en Rust, benchmarké face à nmap, nuclei et OpenVAS.",
+        ar: "تطوير dxcan، ماسح أمني بسطر الأوامر بـ Rust، ومقارنته مع nmap و nuclei و OpenVAS."
+      }
+    },
+    {
+      when: { en: "12/2024 – 02/2025", fr: "12/2024 – 02/2025", ar: "12/2024 – 02/2025" },
+      role: { en: "WordPress Developer (Internship)", fr: "Développeur WordPress (stage)", ar: "مطور WordPress (تدريب)" },
+      where: { en: "Swiftstream · Remote, Quebec, Canada", fr: "Swiftstream · Télétravail, Québec, Canada", ar: "Swiftstream · عن بعد، كيبيك، كندا" },
+      desc: {
+        en: "Redesigned the NextTalent website on WordPress with theme and plugin customization and responsive CSS/JavaScript. Collaborated with a Canadian team in English and French.",
+        fr: "Refonte du site NextTalent sous WordPress : personnalisation des thèmes et plugins, CSS/JavaScript responsive. Collaboration avec une équipe canadienne en anglais et en français.",
+        ar: "إعادة تصميم موقع NextTalent على WordPress مع تخصيص القوالب والإضافات، وCSS/JavaScript متجاوب. عملت مع فريق كندي بالإنجليزية والفرنسية."
+      }
+    }
+  ];
+
+  const EDUCATION = [
+    {
+      when: { en: "2025 – present", fr: "2025 – présent", ar: "2025 – الآن" },
+      role: { en: "Professional Training in Web Development & Programming: Java / Angular specialty", fr: "Formation professionnelle en développement web et programmation : spécialité Java / Angular", ar: "تكوين مهني في تطوير الويب والبرمجة: تخصص Java / Angular" },
+      where: { en: "YouCode · UM6P, Youssoufia campus, Morocco", fr: "YouCode · UM6P, campus de Youssoufia, Maroc", ar: "YouCode · جامعة محمد السادس متعددة التخصصات، فرع اليوسفية، المغرب" }
+    },
+    {
+      when: { en: "2023 – 2024", fr: "2023 – 2024", ar: "2023 – 2024" },
+      role: { en: "Bachelor in Computer Science, Networks and Multimedia (IRM)", fr: "Licence en Informatique, Réseaux et Multimédia (IRM)", ar: "إجازة في علوم الحاسوب والشبكات والوسائط المتعددة (IRM)" },
+      where: { en: "Faculty of Science and Technology · Mohammedia, Morocco", fr: "Faculté des Sciences et Techniques · Mohammedia, Maroc", ar: "كلية العلوم والتقنيات · المحمدية، المغرب" }
+    },
+    {
+      when: { en: "2020 – 2023", fr: "2020 – 2023", ar: "2020 – 2023" },
+      role: { en: "DEUST in Mathematics, Computer Science, Physics (MIP)", fr: "DEUST Mathématiques, Informatique, Physique (MIP)", ar: "DEUST في الرياضيات وعلوم الحاسوب والفيزياء (MIP)" },
+      where: { en: "Faculty of Science and Technology · Mohammedia, Morocco", fr: "Faculté des Sciences et Techniques · Mohammedia, Maroc", ar: "كلية العلوم والتقنيات · المحمدية، المغرب" }
+    },
+    {
+      when: { en: "2019 – 2020", fr: "2019 – 2020", ar: "2019 – 2020" },
+      role: { en: "Baccalaureate in Physical Sciences", fr: "Baccalauréat Sciences physiques", ar: "بكالوريا العلوم الفيزيائية" },
+      where: { en: "Lfqih Lamrini High School · Salé, Morocco", fr: "Lycée Lfqih Lamrini · Salé, Maroc", ar: "Lfqih Lamrini · سلا، المغرب" }
+    }
+  ];
+
+  let currentLang = "en";
+
+  function pick(obj) { return obj[currentLang] || obj.en; }
+
+  function renderProjects() {
+    const grid = document.getElementById("project-grid");
+    const labels = T[currentLang];
+    grid.innerHTML = "";
+    PROJECTS.forEach(p => {
+      const card = document.createElement("article");
+      card.className = "card";
+      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join("");
+      const liveBadge = p.live ? `<span class="badge">${labels.badge_live}</span><br>` : "";
+      const links = [
+        `<a href="${p.repo}" target="_blank" rel="noopener">${labels.view_code}</a>`,
+        p.frontend ? `<a href="${p.frontend}" target="_blank" rel="noopener">${labels.frontend}</a>` : "",
+        p.live ? `<a href="${p.live}" target="_blank" rel="noopener">${labels.view_live}</a>` : ""
+      ].filter(Boolean).join("");
+      card.innerHTML = `
+        ${liveBadge}
+        <h3>${p.name}</h3>
+        <div class="tags">${tags}</div>
+        <p>${pick(p.desc)}</p>
+        <div class="links">${links}</div>`;
+      grid.appendChild(card);
+    });
+  }
+
+  function renderList(id, items) {
+    const el = document.getElementById(id);
+    el.innerHTML = items.map(i => `
+      <div class="item">
+        <div class="when">${pick(i.when)}</div>
+        <h3>${pick(i.role)}</h3>
+        <div class="where">${pick(i.where)}</div>
+        ${i.desc ? `<p class="muted" style="margin:8px 0 0">${pick(i.desc)}</p>` : ""}
+      </div>`).join("");
+  }
+
+  function applyLang(lang) {
+    currentLang = T[lang] ? lang : "en";
+    const html = document.documentElement;
+    html.lang = currentLang;
+    html.dir = currentLang === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (T[currentLang][key] !== undefined) el.textContent = T[currentLang][key];
+    });
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.setAttribute("aria-pressed", btn.getAttribute("data-lang") === currentLang ? "true" : "false");
+    });
+
+    document.getElementById("footer-text").textContent = T[currentLang].footer;
+    renderProjects();
+    renderList("timeline", EXPERIENCE);
+    renderList("education", EDUCATION);
+  }
+
+  document.querySelectorAll("[data-lang]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      applyLang(btn.getAttribute("data-lang"));
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", currentLang);
+      history.replaceState(null, "", url);
+    });
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  applyLang(params.get("lang") || "en");
+</script>
+</body>
+</html>
