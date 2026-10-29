@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sami Regragui · Full-Stack Developer · Java / Angular</title>
-  <meta name="description" content="Sami Regragui, full-stack developer focused on Java, Angular and backend systems. Featured projects, experience and contact.">
+  <meta name="description" content="Sami Regragui is a full-stack developer focused on Java, Angular and backend systems, also building with Laravel, Vue.js and Python. See featured projects.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
@@ -149,7 +149,8 @@
       display: flex; align-items: flex-end; padding: var(--s2);
       border-bottom: 1px solid var(--border);
     }
-    .media span {
+    .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .media span { position: relative; z-index: 1;
       font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.72rem;
       background: rgba(11, 15, 20, 0.55); color: var(--text);
       padding: 3px 8px; border-radius: 6px;
@@ -235,6 +236,32 @@
       .card, .card:hover { transition: none; transform: none; }
     }
   </style>
+  <link rel="canonical" href="https://sami-regragui-work.github.io/">
+  <link rel="alternate" hreflang="en" href="https://sami-regragui-work.github.io/">
+  <link rel="alternate" hreflang="fr" href="https://sami-regragui-work.github.io/?lang=fr">
+  <link rel="alternate" hreflang="ar" href="https://sami-regragui-work.github.io/?lang=ar">
+  <link rel="alternate" hreflang="x-default" href="https://sami-regragui-work.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sami Regragui · Full-Stack Developer · Java / Angular">
+  <meta property="og:description" content="Full-stack developer focused on Java, Angular and backend systems. Featured projects and experience.">
+  <meta property="og:url" content="https://sami-regragui-work.github.io/">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sami Regragui",
+    "jobTitle": "Full-Stack Developer",
+    "url": "https://sami-regragui-work.github.io/",
+    "email": "sami.regragui.work@protonmail.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/samiregragui",
+      "https://github.com/Sami-Regragui-Work"
+    ],
+    "knowsLanguage": ["Arabic", "English", "French"],
+    "knowsAbout": ["Java", "Spring", "Angular", "Laravel", "Vue.js", "Python", "Rust", "REST APIs", "Network security"]
+  }
+  </script>
 </head>
 <body>
 
@@ -244,11 +271,11 @@
   <div class="container nav">
     <a class="brand" href="#top">Sami<span>.</span>Regragui</a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#about" data-i18n="nav_about"></a>
-      <a href="#projects" data-i18n="nav_projects"></a>
-      <a href="#skills" data-i18n="nav_skills"></a>
-      <a href="#experience" data-i18n="nav_experience"></a>
-      <a href="#contact" data-i18n="nav_contact"></a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#skills" data-i18n="nav_skills">Skills</a>
+      <a href="#experience" data-i18n="nav_experience">Experience</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="lang" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -262,24 +289,24 @@
 
   <section class="hero" id="top">
     <div class="container">
-      <p class="eyebrow" data-i18n="eyebrow"></p>
+      <p class="eyebrow" data-i18n="eyebrow">Full-stack developer</p>
       <h1>Sami Regragui</h1>
-      <p class="value" data-i18n="value"></p>
-      <p class="role" data-i18n="role"></p>
+      <p class="value" data-i18n="value">I build backend systems that handle real business rules, and the interfaces that make them usable.</p>
+      <p class="role" data-i18n="role">Java / Angular · Laravel / Vue.js · Python · backend-leaning</p>
       <div class="cta">
-        <a class="btn primary" href="#projects" data-i18n="cta_primary"></a>
-        <a class="btn" href="#contact" data-i18n="cta_secondary"></a>
+        <a class="btn primary" href="#projects" data-i18n="cta_primary">View featured projects</a>
+        <a class="btn" href="#contact" data-i18n="cta_secondary">Get in touch</a>
       </div>
-      <span class="status" data-i18n="status"></span>
+      <span class="status" data-i18n="status">Open to full-stack Java / Angular and Laravel roles</span>
     </div>
   </section>
 
   <section id="about">
     <div class="container">
-      <h2 data-i18n="about_title"></h2>
+      <h2 data-i18n="about_title">About</h2>
       <div class="about-grid">
-        <p data-i18n="about_p1"></p>
-        <p data-i18n="about_p2"></p>
+        <p data-i18n="about_p1">I hold a <strong>Bachelor in Computer Science, Networks and Multimedia (IRM)</strong> and I'm a full-stack developer. My deepest hands-on experience is with Laravel and Vue.js, and I'm now specializing in Java and Angular, leaning toward backend work.</p>
+        <p data-i18n="about_p2">I also have strong native Python experience, especially for data processing on images and audio. Above all, I love coding: business logic and problem solving are what keep me going.</p>
       </div>
     </div>
   </section>
@@ -287,35 +314,313 @@
   <section id="projects">
     <div class="container">
       <div class="section-head">
-        <h2><span data-i18n="projects_title"></span> <span class="counter" id="project-count"></span></h2>
-        <button class="btn" type="button" id="toggle-all" aria-expanded="false" aria-controls="all-panel" data-i18n="btn_all_projects"></button>
+        <h2><span data-i18n="projects_title">Projects</span> <span class="counter" id="project-count">45</span></h2>
+        <button class="btn" type="button" id="toggle-all" aria-expanded="false" aria-controls="all-panel" data-i18n="btn_all_projects">See all projects</button>
       </div>
-      <p class="sub" data-i18n="projects_intro"></p>
+      <p class="sub" data-i18n="projects_intro">Selected work, from full-stack applications to APIs and security tooling. Each card shows the problem it solves and the stack behind it.</p>
 
-      <div class="grid" id="project-grid"></div>
+      <div class="grid" id="project-grid">
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #0f766e 0%, #134e4a 55%, #0b1f2a 100%)">
+            
+            <span>Screenshot placeholder: ConvergeThread</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>ConvergeThread</h3>
+            <p class="problem"><b>Problem</b>Teams need focused, permissioned collaboration, not a general-purpose chat feed.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Thread-based, tenant-oriented chat platform with customizable roles, permissions and flexible group interactions. Real-time updates through Laravel Reverb, with isolated workspaces, groups, duos and temporary merge sessions for cross-team conversations.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Laravel 12</span><span class="tag">Reverb</span><span class="tag">LiveKit</span><span class="tag">CodeMirror 6</span><span class="tag">Vite</span><span class="tag">MySQL</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/ConvergeThread" target="_blank" rel="noopener">Source code →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #1e3a8a 0%, #312e81 55%, #0b1020 100%)">
+            
+            <span>Screenshot placeholder: Auth API</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>Auth API</h3>
+            <p class="problem"><b>Problem</b>Every app reinvents login. This service ships JWT, OAuth and token refresh once, fully documented.</p>
+            <p class="muted" style="font-size:var(--fs-small)">REST authentication service with JWT sessions, Google OAuth sign-in, token refresh and user CRUD, documented with interactive Swagger/OpenAPI so every endpoint can be tested from the browser.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Laravel 12</span><span class="tag">JWT</span><span class="tag">Socialite</span><span class="tag">Swagger / OpenAPI</span><span class="tag">Vue.js</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/sagc_api" target="_blank" rel="noopener">Source code →</a><a href="https://github.com/Sami-Regragui-Work/sagc_vue" target="_blank" rel="noopener">Frontend →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #7c2d12 0%, #92400e 50%, #1c1917 100%)">
+            <img src="screenshots/workspace-staff-manager.png" alt="Workspace Staff Manager" loading="lazy" onerror="this.remove()">
+            <span></span>
+          </div>
+          <div class="card-body">
+            <span class="badge">Live</span>
+            <h3>Workspace Staff Manager</h3>
+            <p class="problem"><b>Problem</b>Staff get placed in rooms they aren&#39;t allowed in. Zone rules are enforced at the point of assignment.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Interactive floor-plan tool with six zones, each governed by role-based rules and capacity limits. Drag-and-drop assignment, highlighted unfilled zones, and data saved in the browser with a responsive sidebar.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">HTML5</span><span class="tag">Tailwind CSS</span><span class="tag">JavaScript</span><span class="tag">localStorage</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/WorkSpace-Staff-Manager" target="_blank" rel="noopener">Source code →</a><a href="https://sami-regragui-work.github.io/WorkSpace-Staff-Manager/" target="_blank" rel="noopener">Live demo →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #064e3b 0%, #0f172a 60%, #020617 100%)">
+            
+            <span>Screenshot placeholder: dxcan</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>dxcan</h3>
+            <p class="problem"><b>Problem</b>Security checks spread across separate tools. One fast Rust CLI runs them as independent subcommands.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Rust CLI security scanner covering port and OS scanning, CVE matching and TLS/misconfiguration checks, with CSV and Markdown reporting. Benchmarked against nmap, nuclei and OpenVAS, reaching up to 280x faster CVE analysis.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Rust</span><span class="tag">CLI</span><span class="tag">Nmap</span><span class="tag">OpenVAS</span><span class="tag">Security</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/public-full-dxcan" target="_blank" rel="noopener">Source code →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #581c87 0%, #3b0764 55%, #0f0a1f 100%)">
+            
+            <span>Screenshot placeholder: Event Ticketing REST API</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>Event Ticketing REST API</h3>
+            <p class="problem"><b>Problem</b>Concurrent buyers can oversell the last seat, and abandoned carts hold seats forever.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Event ticketing REST API with pessimistic-lock seat reservation, promo codes and idempotent payments. Unpaid reservations expire automatically through a scheduled job. A Testcontainers test checks concurrent booking of the last seat.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">PostgreSQL</span><span class="tag">Testcontainers</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/EventPro-API" target="_blank" rel="noopener">Source code →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #0e7490 0%, #164e63 55%, #082f49 100%)">
+            
+            <span>Screenshot placeholder: Clinic Management System</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>Clinic Management System</h3>
+            <p class="problem"><b>Problem</b>Appointment booking that respects availability, breaks, leave and lead-time rules.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Clinic management system covering patients, doctors, departments, specialties, availabilities, appointments and medical notes. Auto-generated 30-minute time slots with buffers, lunch breaks, leave exclusions and lead-time rules, built with Servlets, JSP/JSTL and JPA/Hibernate.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Java EE</span><span class="tag">Servlets</span><span class="tag">JSP / JSTL</span><span class="tag">JPA / Hibernate</span><span class="tag">PostgreSQL</span><span class="tag">JUnit 5</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/ClinicManagerJEE" target="_blank" rel="noopener">Source code →</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="media" style="background:linear-gradient(135deg, #1e293b 0%, #0f172a 60%, #020617 100%)">
+            
+            <span>Screenshot placeholder: User Management REST API</span>
+          </div>
+          <div class="card-body">
+            
+            <h3>User Management REST API</h3>
+            <p class="problem"><b>Problem</b>Admin and user roles kept separate, with passwords never returned by the API.</p>
+            <p class="muted" style="font-size:var(--fs-small)">Native Spring MVC REST API for user management, with admin CRUD endpoints and user endpoints for profile and password changes. Bean Validation, global exception handling and BCrypt hashing, packaged without Spring Boot.</p>
+            <div class="tags" aria-label="Stack"><span class="tag">Spring MVC</span><span class="tag">Spring Data JPA</span><span class="tag">H2</span><span class="tag">BCrypt</span><span class="tag">JUnit 5</span><span class="tag">MockMvc</span></div>
+            <div class="links"><a href="https://github.com/Sami-Regragui-Work/User-Management-API" target="_blank" rel="noopener">Source code →</a></div>
+          </div>
+        </article></div>
 
       <div class="all-panel" id="all-panel" hidden>
-        <h3 data-i18n="all_title"></h3>
-        <ul class="all-list" id="all-list"></ul>
+        <h3 data-i18n="all_title">All projects</h3>
+        <ul class="all-list" id="all-list">
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/ConvergeThread" target="_blank" rel="noopener">ConvergeThread</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/sagc_api" target="_blank" rel="noopener">sagc_api</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/WorkSpace-Staff-Manager" target="_blank" rel="noopener">WorkSpace-Staff-Manager</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/public-full-dxcan" target="_blank" rel="noopener">public-full-dxcan</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/EventPro-API" target="_blank" rel="noopener">EventPro-API</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/ClinicManagerJEE" target="_blank" rel="noopener">ClinicManagerJEE</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/User-Management-API" target="_blank" rel="noopener">User-Management-API</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/TifawinSouk-E-Commerce" target="_blank" rel="noopener">TifawinSouk-E-Commerce</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/TifawinSouk-v2" target="_blank" rel="noopener">TifawinSouk-v2</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/E-Bank" target="_blank" rel="noopener">E-Bank</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/hotel-booking-management" target="_blank" rel="noopener">hotel-booking-management</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/talentHub-Collectif" target="_blank" rel="noopener">talentHub-Collectif</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Unity-Care-Clinic-V3" target="_blank" rel="noopener">Unity-Care-Clinic-V3</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/easy_colocation" target="_blank" rel="noopener">easy_colocation</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/SAMVC" target="_blank" rel="noopener">SAMVC</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Nexus-E-Sports-Designed" target="_blank" rel="noopener">Nexus-E-Sports-Designed</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/sagc_vue" target="_blank" rel="noopener">sagc_vue</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/cv-html-pdf" target="_blank" rel="noopener">cv-html-pdf</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/CV-Builder-TW-VanillaJs" target="_blank" rel="noopener">CV-Builder-TW-VanillaJs</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/hbmc-postgres" target="_blank" rel="noopener">hbmc-postgres</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/skitfold" target="_blank" rel="noopener">skitfold</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Reinforcement" target="_blank" rel="noopener">Reinforcement</a>
+        <span class="muted">Project</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Unity-Care-Clinic-V2" target="_blank" rel="noopener">Unity-Care-Clinic-V2</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Unity-Care-Clinic-V1" target="_blank" rel="noopener">Unity-Care-Clinic-V1</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/SAS-2-2025" target="_blank" rel="noopener">SAS-2-2025</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Mini_projet" target="_blank" rel="noopener">Mini_projet</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/NexusEsport-brief" target="_blank" rel="noopener">NexusEsport-brief</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/mis-en-php-crud" target="_blank" rel="noopener">mis-en-php-crud</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/book-workshop-laravel" target="_blank" rel="noopener">book-workshop-laravel</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Mise-en-situation1" target="_blank" rel="noopener">Mise-en-situation1</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/mis-en-s-2" target="_blank" rel="noopener">mis-en-s-2</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Job-listing-1st" target="_blank" rel="noopener">Job-listing-1st</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/job-listing-preparation" target="_blank" rel="noopener">job-listing-preparation</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Object-Manipulation" target="_blank" rel="noopener">Object-Manipulation</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Autofill-CSS-Styling-Control" target="_blank" rel="noopener">Autofill-CSS-Styling-Control</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/js-dom" target="_blank" rel="noopener">js-dom</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/JavaScript-Documentation-By-Adnane" target="_blank" rel="noopener">JavaScript-Documentation-By-Adnane</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/Frontend-revise" target="_blank" rel="noopener">Frontend-revise</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/ts-livecoding" target="_blank" rel="noopener">ts-livecoding</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/TS-veille" target="_blank" rel="noopener">TS-veille</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/SAS2-Challenges-Array" target="_blank" rel="noopener">SAS2-Challenges-Array</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/spring-mvc-demo" target="_blank" rel="noopener">spring-mvc-demo</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/dxcan" target="_blank" rel="noopener">dxcan</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/test-irm" target="_blank" rel="noopener">test-irm</a>
+        <span class="muted">Practice</span>
+      </li>
+      <li>
+        <a href="https://github.com/Sami-Regragui-Work/test" target="_blank" rel="noopener">test</a>
+        <span class="muted">Practice</span>
+      </li></ul>
       </div>
     </div>
   </section>
 
   <section id="skills">
     <div class="container">
-      <h2 data-i18n="skills_title"></h2>
-      <p class="sub" data-i18n="skills_intro"></p>
+      <h2 data-i18n="skills_title">Skills</h2>
+      <p class="sub" data-i18n="skills_intro">Grouped by how I use them day to day.</p>
       <div class="skills-grid">
 
         <div class="skill-card">
-          <h3 data-i18n="sk_languages"></h3>
+          <h3 data-i18n="sk_languages">Languages</h3>
           <div class="chips">
             <span>Java SE</span><span>Python</span><span>PHP</span><span>JavaScript</span><span>Rust</span><span>C</span><span>SQL</span><span>Bash</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_backend"></h3>
+          <h3 data-i18n="sk_backend">Backend</h3>
           <div class="chips">
             <span>Spring</span><span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate / JPA</span>
             <span>Jakarta EE</span><span>JSP / JSTL</span><span>JDBC</span><span>Laravel</span><span>Blade</span><span>PDO</span><span>WebSocket</span>
@@ -323,35 +628,35 @@
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_frontend"></h3>
+          <h3 data-i18n="sk_frontend">Frontend</h3>
           <div class="chips">
             <span>Angular</span><span>Vue.js</span><span>HTML</span><span>CSS</span><span>Tailwind CSS</span><span>jQuery</span><span>AJAX</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_data"></h3>
+          <h3 data-i18n="sk_data">Databases</h3>
           <div class="chips">
             <span>MySQL</span><span>PostgreSQL</span><span>H2</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_python_data"></h3>
+          <h3 data-i18n="sk_python_data">Python &amp; data</h3>
           <div class="chips">
-            <span data-i18n="py_1"></span><span data-i18n="py_2"></span><span>NumPy</span>
+            <span data-i18n="py_1">Image processing</span><span data-i18n="py_2">Audio processing</span><span>NumPy</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_security"></h3>
+          <h3 data-i18n="sk_security">Networking &amp; security</h3>
           <div class="chips">
             <span>Nmap</span><span>OpenVAS</span><span>nuclei</span><span>TLS</span><span>SDN OpenDaylight</span><span>Mininet</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_tools"></h3>
+          <h3 data-i18n="sk_tools">Tools</h3>
           <div class="chips">
             <span>Linux</span><span>Docker</span><span>Git & GitHub</span><span>Maven</span><span>Postman</span><span>Swagger / OpenAPI</span>
             <span>IntelliJ IDEA</span><span>VS Code</span><span>phpMyAdmin</span><span>Figma</span><span>Jira</span><span>StarUML</span>
@@ -359,45 +664,81 @@
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_testing"></h3>
+          <h3 data-i18n="sk_testing">Testing</h3>
           <div class="chips">
             <span>JUnit 5</span><span>Mockito</span><span>MockMvc</span><span>Testcontainers</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_concepts"></h3>
+          <h3 data-i18n="sk_concepts">Concepts</h3>
           <div class="chips">
             <span>MVC</span><span>OOP</span><span>SOLID</span><span>UML</span><span>ERD</span><span>REST APIs</span><span>JWT / OAuth</span>
           </div>
         </div>
 
         <div class="skill-card">
-          <h3 data-i18n="sk_languages_spoken"></h3>
+          <h3 data-i18n="sk_languages_spoken">Spoken languages</h3>
           <div class="chips">
-            <span data-i18n="lang_ar"></span><span data-i18n="lang_en"></span><span data-i18n="lang_fr"></span>
+            <span data-i18n="lang_ar">Arabic (native)</span><span data-i18n="lang_en">English (B2)</span><span data-i18n="lang_fr">French (B1)</span>
           </div>
         </div>
 
       </div>
-      <p class="certs" data-i18n="certs"></p>
+      <p class="certs" data-i18n="certs">Certified: Cisco CCNA (2023).</p>
     </div>
   </section>
 
   <section id="experience">
     <div class="container">
-      <h2 data-i18n="exp_title"></h2>
-      <div class="timeline" id="timeline"></div>
-      <h3 class="edu-title" data-i18n="edu_title"></h3>
-      <div class="timeline" id="education"></div>
+      <h2 data-i18n="exp_title">Experience</h2>
+      <div class="timeline" id="timeline">
+      <div class="tl-item">
+        <div class="tl-when">05/2026 – 07/2026</div>
+        <h3 class="tl-role">Security R&amp;D Intern: dxcan (Rust scanner)</h3>
+        <div class="tl-where">DXC Technology Morocco &amp; CDG · Technopolis, Rabat</div>
+        <p class="tl-desc">Built dxcan, a Rust CLI security scanner, and benchmarked it against nmap, nuclei and OpenVAS.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">12/2024 – 02/2025</div>
+        <h3 class="tl-role">WordPress Developer (Internship)</h3>
+        <div class="tl-where">Swiftstream · Remote, Quebec, Canada</div>
+        <p class="tl-desc">Redesigned the NextTalent website on WordPress with theme and plugin customization and responsive CSS/JavaScript. Collaborated with a Canadian team in English and French.</p>
+      </div></div>
+      <h3 class="edu-title" data-i18n="edu_title">Education</h3>
+      <div class="timeline" id="education">
+      <div class="tl-item">
+        <div class="tl-when">2025 – present</div>
+        <h3 class="tl-role">Professional Training in Web Development &amp; Programming: Java / Angular specialty</h3>
+        <div class="tl-where">YouCode · UM6P, Youssoufia campus, Morocco</div>
+        
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2023 – 2024</div>
+        <h3 class="tl-role">Bachelor in Computer Science, Networks and Multimedia (IRM)</h3>
+        <div class="tl-where">Faculty of Science and Technology · Mohammedia, Morocco</div>
+        
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2020 – 2023</div>
+        <h3 class="tl-role">DEUST in Mathematics, Computer Science, Physics (MIP)</h3>
+        <div class="tl-where">Faculty of Science and Technology · Mohammedia, Morocco</div>
+        
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">2019 – 2020</div>
+        <h3 class="tl-role">Baccalaureate in Physical Sciences</h3>
+        <div class="tl-where">Lfqih Lamrini High School · Salé, Morocco</div>
+        
+      </div></div>
     </div>
   </section>
 
   <section id="contact">
     <div class="container">
       <div class="contact-box">
-        <h2 data-i18n="contact_title"></h2>
-        <p data-i18n="contact_text"></p>
+        <h2 data-i18n="contact_title">Let's talk</h2>
+        <p data-i18n="contact_text">I'm looking for full-stack Java / Angular and Laravel roles. If you have a backend problem worth solving, send me a message.</p>
         <div class="cta">
           <a class="btn primary" href="mailto:sami.regragui.work@protonmail.com">sami.regragui.work@protonmail.com</a>
           <a class="btn" href="https://www.linkedin.com/in/samiregragui" target="_blank" rel="noopener">LinkedIn</a>
@@ -411,7 +752,7 @@
 
 <footer class="site-foot">
   <div class="container">
-    <span id="footer-text"></span>
+    <span id="footer-text">© 2026 Sami Regragui</span>
   </div>
 </footer>
 
@@ -467,7 +808,7 @@
       badge_live: "Live",
       placeholder: "Screenshot placeholder",
       repo_no_readme: "no README",
-      repo_link: "Repo"
+      repo_link: "Repo", kind_project: "Project", kind_practice: "Practice"
     },
     fr: {
       nav_about: "À propos", nav_projects: "Projets", nav_skills: "Compétences", nav_experience: "Expérience", nav_contact: "Contact",
@@ -513,7 +854,7 @@
       badge_live: "En ligne",
       placeholder: "Emplacement capture d'écran",
       repo_no_readme: "sans README",
-      repo_link: "Dépôt"
+      repo_link: "Dépôt", kind_project: "Projet", kind_practice: "Exercice"
     },
     ar: {
       nav_about: "نبذة", nav_projects: "المشاريع", nav_skills: "المهارات", nav_experience: "الخبرة", nav_contact: "تواصل",
@@ -559,7 +900,7 @@
       badge_live: "متاح",
       placeholder: "مكان لقطة الشاشة",
       repo_no_readme: "بدون README",
-      repo_link: "المستودع"
+      repo_link: "المستودع", kind_project: "مشروع", kind_practice: "تمرين"
     }
   };
 
@@ -607,6 +948,7 @@
       repo: "https://github.com/Sami-Regragui-Work/WorkSpace-Staff-Manager",
       frontend: null,
       live: "https://sami-regragui-work.github.io/WorkSpace-Staff-Manager/",
+      shot: "screenshots/workspace-staff-manager.png",
       problem: {
         en: "Staff get placed in rooms they aren't allowed in. Zone rules are enforced at the point of assignment.",
         fr: "Du personnel est affecté à des salles auxquelles il n'a pas accès. Les règles de zone sont appliquées au moment de l'affectation.",
@@ -688,56 +1030,56 @@
     }
   ];
 
-  /* ===== All repos. hidden = true for tests, exercises, demos, duplicates or superseded versions ===== */
-  const ALL_REPOS = [
-    { name: "EventPro-API", hidden: false },
-    { name: "cv-html-pdf", hidden: false },
-    { name: "User-Management-API", hidden: false },
-    { name: "spring-mvc-demo", hidden: true },
-    { name: "ClinicManagerJEE", hidden: false },
-    { name: "sagc_vue", hidden: false },
-    { name: "sagc_api", hidden: false },
-    { name: "hbmc-postgres", hidden: false },
-    { name: "skitfold", hidden: false },
-    { name: "test-irm", hidden: true },
-    { name: "hotel-booking-management", hidden: false },
-    { name: "ConvergeThread", hidden: false },
-    { name: "public-full-dxcan", hidden: false },
-    { name: "dxcan", hidden: true },
-    { name: "Reinforcement", hidden: false },
-    { name: "ts-livecoding", hidden: true },
-    { name: "TS-veille", hidden: true },
-    { name: "E-Bank", hidden: false },
-    { name: "test", hidden: true },
-    { name: "Frontend-revise", hidden: true },
-    { name: "easy_colocation", hidden: false },
-    { name: "book-workshop-laravel", hidden: true },
-    { name: "TifawinSouk-v2", hidden: false },
-    { name: "TifawinSouk-E-Commerce", hidden: false },
-    { name: "talentHub-Collectif", hidden: false },
-    { name: "SAMVC", hidden: false },
-    { name: "Unity-Care-Clinic-V3", hidden: false },
-    { name: "Unity-Care-Clinic-V2", hidden: true },
-    { name: "mis-en-php-crud", hidden: true },
-    { name: "Unity-Care-Clinic-V1", hidden: true },
-    { name: "WorkSpace-Staff-Manager", hidden: false },
-    { name: "Object-Manipulation", hidden: true },
-    { name: "job-listing-preparation", hidden: true },
-    { name: "CV-Builder-TW-VanillaJs", hidden: false },
-    { name: "Autofill-CSS-Styling-Control", hidden: true },
-    { name: "JavaScript-Documentation-By-Adnane", hidden: true },
-    { name: "js-dom", hidden: true },
-    { name: "Job-listing-1st", hidden: true },
-    { name: "mis-en-s-2", hidden: true },
-    { name: "Mise-en-situation1", hidden: true },
-    { name: "Nexus-E-Sports-Designed", hidden: false },
-    { name: "NexusEsport-brief", hidden: true },
-    { name: "SAS-2-2025", hidden: true },
-    { name: "Mini_projet", hidden: true },
-    { name: "SAS2-Challenges-Array", hidden: true }
+  /* ===== All repos, ranked best to worst. kind: 'project' or 'practice' (course work, exercises, tests, duplicates) ===== */
+  const RANKED_REPOS = [
+    { name: "ConvergeThread", kind: "project" },
+    { name: "sagc_api", kind: "project" },
+    { name: "WorkSpace-Staff-Manager", kind: "project" },
+    { name: "public-full-dxcan", kind: "project" },
+    { name: "EventPro-API", kind: "project" },
+    { name: "ClinicManagerJEE", kind: "project" },
+    { name: "User-Management-API", kind: "project" },
+    { name: "TifawinSouk-E-Commerce", kind: "project" },
+    { name: "TifawinSouk-v2", kind: "project" },
+    { name: "E-Bank", kind: "project" },
+    { name: "hotel-booking-management", kind: "project" },
+    { name: "talentHub-Collectif", kind: "project" },
+    { name: "Unity-Care-Clinic-V3", kind: "project" },
+    { name: "easy_colocation", kind: "project" },
+    { name: "SAMVC", kind: "project" },
+    { name: "Nexus-E-Sports-Designed", kind: "project" },
+    { name: "sagc_vue", kind: "project" },
+    { name: "cv-html-pdf", kind: "project" },
+    { name: "CV-Builder-TW-VanillaJs", kind: "project" },
+    { name: "hbmc-postgres", kind: "project" },
+    { name: "skitfold", kind: "project" },
+    { name: "Reinforcement", kind: "project" },
+    { name: "Unity-Care-Clinic-V2", kind: "practice" },
+    { name: "Unity-Care-Clinic-V1", kind: "practice" },
+    { name: "SAS-2-2025", kind: "practice" },
+    { name: "Mini_projet", kind: "practice" },
+    { name: "NexusEsport-brief", kind: "practice" },
+    { name: "mis-en-php-crud", kind: "practice" },
+    { name: "book-workshop-laravel", kind: "practice" },
+    { name: "Mise-en-situation1", kind: "practice" },
+    { name: "mis-en-s-2", kind: "practice" },
+    { name: "Job-listing-1st", kind: "practice" },
+    { name: "job-listing-preparation", kind: "practice" },
+    { name: "Object-Manipulation", kind: "practice" },
+    { name: "Autofill-CSS-Styling-Control", kind: "practice" },
+    { name: "js-dom", kind: "practice" },
+    { name: "JavaScript-Documentation-By-Adnane", kind: "practice" },
+    { name: "Frontend-revise", kind: "practice" },
+    { name: "ts-livecoding", kind: "practice" },
+    { name: "TS-veille", kind: "practice" },
+    { name: "SAS2-Challenges-Array", kind: "practice" },
+    { name: "spring-mvc-demo", kind: "practice" },
+    { name: "dxcan", kind: "practice" },
+    { name: "test-irm", kind: "practice" },
+    { name: "test", kind: "practice" },
   ];
 
-  const VISIBLE_REPOS = ALL_REPOS.filter(r => !r.hidden);
+  const VISIBLE_REPOS = RANKED_REPOS;
   const TOTAL_PROJECTS = VISIBLE_REPOS.length;
 
   const EXPERIENCE = [
@@ -805,9 +1147,9 @@
       ].filter(Boolean).join("");
       return `
         <article class="card">
-          <div class="media" style="background:${p.grad}" role="img" aria-label="${esc(L.placeholder)}: ${esc(p.name)}">
-            <!-- To use a real screenshot, replace this div with: <img src="screenshots/name.png" alt="..."> -->
-            <span>${L.placeholder}: ${esc(p.name)}</span>
+          <div class="media" style="background:${p.grad}">
+            ${p.shot ? `<img src="${p.shot}" alt="${esc(p.name)}" loading="lazy" onerror="this.remove()">` : ""}
+            <span>${p.shot ? "" : L.placeholder + ": " + esc(p.name)}</span>
           </div>
           <div class="card-body">
             ${live}
@@ -827,7 +1169,7 @@
     list.innerHTML = VISIBLE_REPOS.map(r => `
       <li>
         <a href="https://github.com/Sami-Regragui-Work/${encodeURIComponent(r.name)}" target="_blank" rel="noopener">${esc(r.name)}</a>
-        <span class="muted">${L.repo_link}</span>
+        <span class="muted">${r.kind === "practice" ? L.kind_practice : L.kind_project}</span>
       </li>`).join("");
     document.getElementById("project-count").textContent = String(TOTAL_PROJECTS);
     document.getElementById("project-count").setAttribute("aria-label", TOTAL_PROJECTS + " " + L.projects_title);
